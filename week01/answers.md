@@ -77,5 +77,20 @@ System.out.print("|");
 
 Lets define "correct": The program always prints the correct pattern.
 
-The program is correct because only one thread can enter the critical section at the time (mutual exclusion).
+The program is correct because there is no race-conditions, since only one thread can enter the critical section at the time (mutual exclusion).
+```
+
+# Exercise 1.3
+
+## 2
+Answer:
+```
+
+Lets define "correct": The program always prints 15000.
+
+The critical section is:
+`counter++;``
+
+The program is correct because there is no race-conditions, since only one thread can enter the critical section at the time (mutual exclusion).
+
 ```
