@@ -37,7 +37,7 @@ public class TestLongCounterExperiments {
 		private long count = 0;
 
 		public void increment() {
-			count = count + 1;
+			count += 1;
 		}
 
 		public long get() {

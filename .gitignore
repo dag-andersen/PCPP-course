@@ -3,5 +3,5 @@
 **/bin/
 **/.idea/
 **/.classpath
-
+**/.project
 *.class
