@@ -58,6 +58,24 @@ See code
 
 ## 2
 Answer:
+```
 Thread 1 starts and runs the first operation `system.out.print("-");` and proceeds to the `Thread.sleep(50);` operation, and before it reaches the last operation, Thread 2 starts and runs the `system.out.print("-");` operation.
+```
 
 ## 3
+
+Answer:
+```
+The critical section is:
+
+System.out.print("-");
+try {
+    Thread.sleep(50);
+} catch (InterruptedException exn) {
+}
+System.out.print("|");
+
+Lets define "correct": The program always prints the correct pattern.
+
+The program is correct because only one thread can enter the critical section at the time (mutual exclusion).
+```
