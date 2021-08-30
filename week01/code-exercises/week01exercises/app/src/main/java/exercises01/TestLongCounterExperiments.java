@@ -6,7 +6,7 @@ package exercises01;
 public class TestLongCounterExperiments {
 
 	LongCounter lc = new LongCounter();
-	int counts = 10_000_000;
+	int counts = 100;
 
 	public TestLongCounterExperiments() {
 
