@@ -3,10 +3,12 @@
 // raup@itu.dk * 2021-08-27
 package exercises01;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 public class TestLongCounterExperiments {
 
 	LongCounter lc = new LongCounter();
-	int counts = 100;
+	int counts = 10_000_000;
 
 	public TestLongCounterExperiments() {
 
@@ -35,9 +37,12 @@ public class TestLongCounterExperiments {
 
 	class LongCounter {
 		private long count = 0;
+		private ReentrantLock lock = new ReentrantLock();
 
 		public void increment() {
+			lock.lock();
 			count++;
+			lock.unlock();
 		}
 
 		public long get() {

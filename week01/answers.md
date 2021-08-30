@@ -18,6 +18,28 @@ Output: ```Count is 200 and should be 200```
 Answer: ```No, it doesn't make a difference. why? 'count++' is syntax sugar and it's decompiled to more than one operation and therefore *race condition* will still happen.```
 
 ## 4
-Output: ```hello world```
 
-Answer: ```hello world```
+Question:
+> Explain why your solution is correct, and why no other output is possible.
+
+Code:
+```
+lock.lock();
+count++;
+lock.unlock();
+```
+
+Notes: ```
+count++ is the critical section.
+There is no race-condition
+There is mutual-exclusion
+The number of interleavings are finite.
+It can't deadlock.
+```
+
+Answer:
+```
+Lets define "correct": The program always prints 20_000.
+The program is correct since the critical section can only be accessed by one thread at the time (mutual exclusion). Mutual Exclusion ensures no race-condition in the program.
+It can't deadlock.
+```
