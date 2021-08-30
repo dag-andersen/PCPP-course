@@ -54,3 +54,10 @@ It can't deadlock.
 # Exercise 1.2
 
 ## 1
+See code
+
+## 2
+Answer:
+Thread 1 starts and runs the first operation `system.out.print("-");` and proceeds to the `Thread.sleep(50);` operation, and before it reaches the last operation, Thread 2 starts and runs the `system.out.print("-");` operation.
+
+## 3
