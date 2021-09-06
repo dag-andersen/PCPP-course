@@ -1,22 +1,20 @@
 # 2.1
 ## 2.1.1
-> Use Java Intrinsic Locks (i.e., synchronized) to implement a monitor ensuring that the access to the
-shared resource by reader and writer threads is according to the specification above.
+> Use Java Intrinsic Locks (i.e., synchronized) to implement a monitor ensuring that the access to the shared resource by reader and writer threads is according to the specification above.
 
 See code.
 
 ## 2.1.2
 
-> Does your solution ensure that if a writer
-thread wants to write, then it will eventually do so? If so, explain why.
+> Does your solution ensure that if a writer thread wants to write, then it will eventually do so? If so, explain why.
 
-The solution is fair towards writers because when a thread wants to write it will immediately set `writer = true;` blocking new readers from acquiring the lock, which ensures that the thread will eventually get to write as soon as the current readers stops reading.
+The solution is fair towards writers because when a thread wants to write it will immediately set `writer = true;` blocking new readers, which ensures that the thread will eventually get to write as soon as the current readers stops reading. If the `writer` variable is already `true` the writer will have to wait for the current writer to finish.
 
 # 2.2
 
 ## 2.2.1
 
-> Do you observe the "main" thread’s write to mi.value remains invisible to the t thread, so that it loops forever?
+> Do you observe the "main" thread’s write to `mi.value` remains invisible to the t thread, so that it loops forever?
 
 Yes that is exactly what we observe.
 
