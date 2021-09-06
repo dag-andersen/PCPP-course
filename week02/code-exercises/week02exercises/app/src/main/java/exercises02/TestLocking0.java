@@ -6,6 +6,7 @@ public class TestLocking0 {
 	public static void main(String[] args) {
 		final int count = 1_000_000;
 		Mystery m = new Mystery();
+
 		Thread t1 = new Thread(() -> {
 			for (int i = 0; i < count; i++)
 				m.addInstance(1);
@@ -27,16 +28,23 @@ public class TestLocking0 {
 
 class Mystery {
 	private static double sum = 0;
+	private static Object obj = new Object();
 
-	public static synchronized void addStatic(double x) {
-		sum += x;
+	public static void addStatic(double x) {
+		synchronized (obj) {
+			sum += x;
+		}
 	}
 
-	public synchronized void addInstance(double x) {
-		sum += x;
+	public void addInstance(double x) {
+		synchronized (obj) {
+			sum += x;
+		}
 	}
 
-	public static synchronized double sum() {
-		return sum;
+	public static double sum() {
+		synchronized (obj) {
+			return sum;
+		}
 	}
 }

@@ -94,5 +94,4 @@ yes.
 # 2.3.2 
 > Explain why race conditions appear when t1 and t2 use the Mystery object. Hint: Consider (a) what it means for an instance method to be synchronized, and (b) what it means for a static method to be synchronized.
 
-When you call a synchronized method on an instance object, it synchronizes with self (the instance object itself). But when you call synchronized on a static method (on the static object), then it synchronized with the static object. Since the instance object and static object are the not the same, then there is no guarantee that the value is flushed and the changes in one thread my not be visible to another thread. Therefore race conditions can appear.
-
+When you call a synchronized method on an instance object, it synchronizes with self (the instance object itself). But when you call synchronized on a static method (on the static object), then it synchronized with the static object. Since the instance object and static object are the not the same, then there is no guarantee that the value is flushed immediately and the changes in one thread my not be visible to another thread. Therefore race conditions can appear.
