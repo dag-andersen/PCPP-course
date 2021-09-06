@@ -7,72 +7,66 @@ import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.Condition;
 
 public class ReadWriteMonitor {
-    private int readers         = 0;
+    private int readsAcquires   = 0;
+    private int readsReleases   = 0;
     private boolean writer      = false;
     private Lock lock           = new ReentrantLock();
     private Condition condition = lock.newCondition();
 
-    
-    //////////////////////////
-    // Read lock operations //
-    //////////////////////////
-    
-    public void readLock() {
-	lock.lock();
-	try {
-	    while(writer)
-		condition.await();
-	    readers++;		
-	}
-	catch (InterruptedException e) {
-	    e.printStackTrace();
-	}
-	finally {
-	    lock.unlock();
-	}
-    }
+	//////////////////////////
+	// Read lock operations //
+	//////////////////////////
 
-    public void readUnlock() {
-	lock.lock();
-	try {		
-	    readers--;
-	    if(readers==0)
-		condition.signalAll();
+	public void readLock() {
+		lock.lock();
+		try {
+			while (writer)
+				condition.await();
+			readsAcquires++;
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} finally {
+			lock.unlock();
+		}
 	}
-	finally {
-	    lock.unlock();
-	}
-    }
 
-    
-    ///////////////////////////
-    // Write lock operations //
-    ///////////////////////////
+	public void readUnlock() {
+		lock.lock();
+		try {
+			readsReleases++;
+			if (readsAcquires == readsReleases)
+				condition.signalAll();
+		} finally {
+			lock.unlock();
+		}
+	}
 
-    public void writeLock() {
-	lock.lock();
-	try {
-	    while(readers > 0 || writer)
-		condition.await();
-	    writer=true;
-	}
-	catch (InterruptedException e) {
-	    e.printStackTrace();
-	}
-	finally {
-	    lock.unlock();
-	}
-    }
+	///////////////////////////
+	// Write lock operations //
+	///////////////////////////
 
-    public void writeUnlock() {
-	lock.lock();
-	try {		
-	    writer=false;
-	    condition.signalAll();
+	public void writeLock() {
+		lock.lock();
+		try {
+			while (writer)
+				condition.await();
+			writer = true;
+			while (readsAcquires != readsReleases)
+				condition.await();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} finally {
+			lock.unlock();
+		}
 	}
-	finally {
-	    lock.unlock();
+
+	public void writeUnlock() {
+		lock.lock();
+		try {
+			writer = false;
+			condition.signalAll();
+		} finally {
+			lock.unlock();
+		}
 	}
-    }
-	
 }

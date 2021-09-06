@@ -2,9 +2,9 @@
 // raup@itu.dk * 01/09/2021
 package exercises02;
 
-public class ReadersWriters {
+public class Exercise_2_1_1 {
 
-    public ReadersWriters() {
+    public Exercise_2_1_1() {
 	// get an instance of the monitor
 	ReadWriteMonitor m = new ReadWriteMonitor();
 
@@ -35,7 +35,7 @@ public class ReadersWriters {
     }
 
     public static void main(String[] args) {
-	new ReadersWriters();
+	new Exercise_2_1_1();
     }
     
 }
