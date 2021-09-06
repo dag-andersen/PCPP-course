@@ -69,3 +69,30 @@ class MutableInteger {
 
 > Does thread t always terminate in this case? Explain your answer.
 Yes because volatile variables are not stored in CPU registers or low levels of cache hidden from other CPUs•Writes to volatile variables flush registers low level cache to shared memory levels. Therefore thread t will always read the MutableInteger as 42.
+
+## 2.3.1
+
+> Compile the program and run it several times. Show the results you get.
+```
+es02.TestLocking0 
+Sum is 1641344,000000 and should be 2000000,000000
+```
+
+```
+es02.TestLocking0 
+Sum is 1131776,000000 and should be 2000000,000000
+```
+
+```
+es02.TestLocking0 
+Sum is 1160960,000000 and should be 2000000,000000
+```
+> Are there any race conditions?
+
+yes.
+
+# 2.3.2 
+> Explain why race conditions appear when t1 and t2 use the Mystery object. Hint: Consider (a) what it means for an instance method to be synchronized, and (b) what it means for a static method to be synchronized.
+
+When you call a synchronized method on an instance object, it synchronizes with self (the instance object itself). But when you call synchronized on a static method (on the static object), then it synchronized with the static object. Since the instance object and static object are the not the same, then there is no guarantee that the value is flushed and the changes in one thread my not be visible to another thread. Therefore race conditions can appear.
+
