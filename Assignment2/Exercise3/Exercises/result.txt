@@ -1,0 +1,166 @@
+> Task :app:compileJava UP-TO-DATE
+> Task :app:processResources NO-SOURCE
+> Task :app:classes UP-TO-DATE
+
+> Task :app:run
+# OS:   Windows 10; 10.0; amd64
+# JVM:  Oracle Corporation; 1.8.0_181
+# CPU:  Intel64 Family 6 Model 126 Stepping 5, GenuineIntel; 8 "cores"
+# Date: 2021-08-19T08:50:49+0200
+Mark 6 measurements
+hashCode()                          600.0 ns    1458.88          2
+hashCode()                          245.0 ns     249.39          4
+hashCode()                          122.5 ns      69.67          8
+hashCode()                          121.9 ns      77.63         16
+hashCode()                         2453.4 ns    7435.34         32
+hashCode()                           48.9 ns      14.30         64
+hashCode()                           45.2 ns       4.38        128
+hashCode()                           44.0 ns       1.40        256
+hashCode()                           53.4 ns      10.02        512
+hashCode()                           34.0 ns       6.79       1024
+hashCode()                           29.0 ns       0.33       2048
+hashCode()                           29.0 ns       0.28       4096
+hashCode()                           19.7 ns       2.56       8192
+hashCode()                           20.9 ns       2.65      16384
+hashCode()                            5.7 ns       6.29      32768
+hashCode()                           12.2 ns       8.48      65536
+hashCode()                            2.9 ns       0.41     131072
+hashCode()                            2.8 ns       0.13     262144
+hashCode()                            2.8 ns       0.05     524288
+hashCode()                            3.2 ns       0.54    1048576
+hashCode()                            2.7 ns       0.08    2097152
+hashCode()                            2.6 ns       0.07    4194304
+hashCode()                            2.6 ns       0.05    8388608
+hashCode()                            2.6 ns       0.10   16777216
+hashCode()                            2.6 ns       0.04   33554432
+hashCode()                            2.6 ns       0.06   67108864
+hashCode()                            2.6 ns       0.02  134217728
+Point creation                      465.0 ns     838.33          2
+Point creation                      190.0 ns     100.83          4
+Point creation                      290.0 ns     131.74          8
+Point creation                      164.4 ns      33.47         16
+Point creation                      190.6 ns     112.23         32
+Point creation                      228.9 ns     232.64         64
+Point creation                      157.8 ns     127.01        128
+Point creation                       79.7 ns      28.34        256
+Point creation                       64.6 ns       3.54        512
+Point creation                       62.4 ns       2.24       1024
+Point creation                       60.5 ns       0.39       2048
+Point creation                       67.2 ns       8.92       4096
+Point creation                       65.4 ns      14.98       8192
+Point creation                       40.1 ns       5.78      16384
+Point creation                       42.0 ns       4.63      32768
+Point creation                       40.1 ns       4.36      65536
+Point creation                       41.2 ns       5.95     131072
+Point creation                       35.2 ns       1.97     262144
+Point creation                       35.2 ns       1.26     524288
+Point creation                       36.1 ns       2.28    1048576
+Point creation                       36.3 ns       2.12    2097152
+Point creation                       34.9 ns       0.68    4194304
+Point creation                       35.1 ns       0.55    8388608
+Thread's work                     61420.0 ns   83375.90          2
+Thread's work                     23735.0 ns    3781.63          4
+Thread's work                     14558.8 ns    7602.54          8
+Thread's work                      9596.3 ns    2883.40         16
+Thread's work                      6735.0 ns    3048.03         32
+Thread's work                      6691.1 ns    1505.24         64
+Thread's work                      5759.1 ns     550.32        128
+Thread's work                      6098.6 ns    1061.11        256
+Thread's work                      5826.3 ns     432.30        512
+Thread's work                      5710.6 ns     170.38       1024
+Thread's work                      5738.1 ns     113.52       2048
+Thread's work                      5776.3 ns      65.67       4096
+Thread's work                      5838.6 ns     143.98       8192
+Thread's work                      5825.4 ns     111.05      16384
+Thread's work                      5798.3 ns      56.59      32768
+Thread's work                      5846.6 ns     104.74      65536
+Thread create                     23920.0 ns   67529.06          2
+Thread create                      3242.5 ns    1928.66          4
+Thread create                      3660.0 ns    2660.77          8
+Thread create                      4301.3 ns     663.39         16
+Thread create                      4183.1 ns    2841.53         32
+Thread create                      1937.2 ns     386.08         64
+Thread create                      1377.0 ns     306.06        128
+Thread create                       938.8 ns     215.58        256
+Thread create                       921.5 ns     273.78        512
+Thread create                       761.5 ns     111.15       1024
+Thread create                       602.1 ns      69.32       2048
+Thread create                       582.4 ns     184.98       4096
+Thread create                       579.1 ns      36.32       8192
+Thread create                       588.6 ns      56.20      16384
+Thread create                       585.9 ns      29.90      32768
+Thread create                       593.4 ns      32.50      65536
+Thread create                       586.3 ns      16.20     131072
+Thread create                       582.4 ns       6.54     262144
+Thread create                       587.5 ns       6.79     524288
+Thread create start              105865.0 ns  116349.54          2
+Thread create start              282415.0 ns  703282.52          4
+Thread create start               50641.3 ns   20908.23          8
+Thread create start               51718.8 ns    8329.39         16
+Thread create start               43631.9 ns    4005.29         32
+Thread create start               42753.0 ns    3055.41         64
+Thread create start               42002.0 ns    2107.15        128
+Thread create start               41407.3 ns     975.26        256
+Thread create start               41280.3 ns    1474.76        512
+Thread create start               40132.3 ns     516.96       1024
+Thread create start               39730.5 ns     441.75       2048
+Thread create start               39739.6 ns     209.10       4096
+Thread create start               39722.2 ns     265.15       8192
+Thread create start join         131800.0 ns   53569.84          2
+Thread create start join         130802.5 ns   29718.28          4
+Thread create start join         102388.8 ns    8674.28          8
+Thread create start join          97636.3 ns   16882.77         16
+Thread create start join          91650.0 ns    5285.91         32
+Thread create start join          92663.8 ns    2021.78         64
+Thread create start join          92850.9 ns    1158.30        128
+Thread create start join          93592.3 ns     899.59        256
+Thread create start join          91598.8 ns    1021.98        512
+Thread create start join          92238.9 ns     831.25       1024
+Thread create start join          91890.7 ns     814.73       2048
+Thread create start join          92006.9 ns     904.41       4096
+ai value = 1556420000
+Uncontended lock                    195.0 ns     494.10          2
+Uncontended lock                     45.0 ns      30.73          4
+Uncontended lock                     62.5 ns      66.93          8
+Uncontended lock                     61.9 ns      75.03         16
+Uncontended lock                     47.5 ns      22.67         32
+Uncontended lock                     36.9 ns       3.62         64
+Uncontended lock                      6.3 ns       2.25        128
+Uncontended lock                      5.5 ns       0.72        256
+Uncontended lock                      7.4 ns       2.43        512
+Uncontended lock                      5.4 ns       0.09       1024
+Uncontended lock                      5.4 ns       0.17       2048
+Uncontended lock                      5.5 ns       0.21       4096
+Uncontended lock                      3.6 ns       0.83       8192
+Uncontended lock                      3.2 ns       0.00      16384
+Uncontended lock                      3.2 ns       0.00      32768
+Uncontended lock                      3.2 ns       0.00      65536
+Uncontended lock                      3.2 ns       0.01     131072
+Uncontended lock                      3.3 ns       0.09     262144
+Uncontended lock                      3.1 ns       0.26     524288
+Uncontended lock                      3.3 ns       0.15    1048576
+Uncontended lock                      3.2 ns       0.05    2097152
+Uncontended lock                      3.2 ns       0.10    4194304
+Uncontended lock                      3.2 ns       0.14    8388608
+Uncontended lock                      3.2 ns       0.07   16777216
+Uncontended lock                      3.2 ns       0.03   33554432
+Uncontended lock                      3.1 ns       0.03   67108864
+Uncontended lock                      3.1 ns       0.01  134217728
+Mark 7 measurements
+hashCode()                            2.6 ns       0.03  134217728
+Point creation                       35.6 ns       0.60    8388608
+Thread's work                      5786.5 ns      48.23      65536
+Thread create                       498.8 ns       5.42     524288
+Thread create start               39713.8 ns     176.09       8192
+Thread create start join          94106.4 ns     555.51       4096
+ai value = 1556420000
+Uncontended lock                      3.8 ns       0.41  134217728
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 8.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+See https://docs.gradle.org/7.1.1/userguide/command_line_interface.html#sec:command_line_warnings
+
+BUILD SUCCESSFUL in 1m 40s
+2 actionable tasks: 1 executed, 1 up-to-date
