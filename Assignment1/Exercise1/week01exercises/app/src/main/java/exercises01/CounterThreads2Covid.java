@@ -35,11 +35,11 @@ public class CounterThreads2Covid {
 	public class Turnstile extends Thread {
 		public void run() {
 			for (int i = 0; i < PEOPLE; i++) {
+				lock.lock();
 				if (counter < MAX_PEOPLE_COVID) {
-					lock.lock();
 					counter++;
-					lock.unlock();
 				}
+				lock.unlock();
 			}
 		}
 	}
