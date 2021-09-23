@@ -14,7 +14,7 @@ class Benchmark {
     // Mark2();
     // Mark3();
     // Mark4();
-    Mark5();
+    // Mark5();
     // Mark6("multiply", i -> multiply(i));
     // Mark6("multiply", Benchmark::multiply); // same as line above, for motivation see here https://docs.oracle.com/javase/tutorial/java/javaOO/methodreferences.html
     // Mark7("multiply", Benchmark::multiply);
@@ -28,6 +28,9 @@ class Benchmark {
     // GetPseudorandomItems();
     // SortingBenchmarks();
     // SortingScalabilityBenchmarks();
+    PerfTest perfTest = new PerfTest();
+    Mark7("Regular int", (i) -> { perfTest.inc(); return 0; });
+    Mark7("Volatile int", (i) -> { perfTest.vInc(); return 0; });
   }
 
   // ========== Example functions and benchmarks ==========

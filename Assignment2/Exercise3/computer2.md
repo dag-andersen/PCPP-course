@@ -98,3 +98,9 @@ Thread create start join          79720.4 ns    2826.08       4096
 ai value = 1556420000
 Uncontended lock                     21.7 ns       0.07   16777216
 ```
+
+# Exercise 3.4: PerfTest
+```
+Regular int                           1.3 ns       0.03  268435456
+Volatile int                          8.8 ns       0.57   33554432
+```

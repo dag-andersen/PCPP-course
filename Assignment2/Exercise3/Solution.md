@@ -20,5 +20,11 @@ Looking at the output results in [computer2.md](computer2.md). We see that the r
 ## Exercise 3.2
 Running *TestTimeThreads* multiple times with *Mark 6*, show us that testing the threads has a much higher standard deviation than the other functions. While the standard deviation and the mean still decrease with the increase in counts, the results of *Thread create start* and *Thread create start join* are still incredibly high compared to the other function. 
 
-Changing to *Mark 7* gave us the expected result compared to the multiple runs with *Mark 6*. The results were consistent with no surprises. 
+Changing to *Mark 7* ([computer2.md](computer2.md)) gave us the expected result compared to the multiple runs with *Mark 6*. The results were consistent with no surprises. 
 
+## Exercise 3.3
+
+???
+
+## Exercise 3.4
+As expected the results ([computer2.md](computer2.md)) show that incrementing the volatile int takes longer compared to the regular int. This was expected since the regular int is stored in the CPU cache where the volatile int is stored in main memory.
