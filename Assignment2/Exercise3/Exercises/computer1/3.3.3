@@ -1,0 +1,45 @@
+# OS:   Mac OS X; 12.0; x86_64
+# JVM:  Homebrew; 16.0.2
+# CPU:  null; 4 "cores"
+# Date: 2021-09-16T12:30:50+0200
+countSequential                10628058,9 ns 1910885,46         32
+countParallelN       1         10125471,7 ns  182676,43         32
+countParallelN       2          6962250,4 ns  766102,21         64
+countParallelN       3          5899431,7 ns  149705,01         64
+countParallelN       4          5389644,2 ns   72159,90         64
+countParallelN       5          5764463,2 ns   40928,31         64
+countParallelN       6          5511310,0 ns   68208,42         64
+countParallelN       7          6199488,0 ns 1634542,23         64
+countParallelN       8          5326080,2 ns   81668,51         64
+countParallelN       9          5483821,2 ns   73859,68         64
+countParallelN      10          5444517,1 ns   42036,35         64
+countParallelN      11          5397451,6 ns   78469,41         64
+countParallelN      12          5409053,5 ns  105293,42         64
+countParallelN      13          5557341,4 ns  197458,80         64
+countParallelN      14          5866716,8 ns  769009,07         64
+countParallelN      15          5427900,4 ns   49304,23         64
+countParallelN      16          5450461,6 ns  107476,54         64
+countParallelN      17          5631186,9 ns  162622,31         64
+countParallelN      18          6184310,8 ns  884053,81         64
+countParallelN      19          7248997,6 ns 1353255,81         64
+countParallelN      20          5685870,8 ns  146029,44         64
+countParallelN      21          5589230,6 ns   61975,19         64
+countParallelN      22          5694071,6 ns   75808,11         64
+countParallelN      23          5657241,3 ns   69595,83         64
+countParallelN      24          8429148,6 ns 1228419,82         64
+countParallelN      25          8975297,4 ns 2063451,29         32
+countParallelN      26          6117016,6 ns  522760,73         64
+countParallelN      27          5722550,3 ns   80276,34         64
+countParallelN      28          5814335,8 ns  109962,18         64
+countParallelN      29          5762797,4 ns   85023,59         64
+countParallelN      30          6090333,0 ns  198927,10         64
+countParallelN      31          5864648,4 ns   69811,03         64
+countParallelN      32          5867317,2 ns   78320,39         64
+
+
+
+Discuss the results: is the performance of AtomicLong better or worse than that of LongCounter? 
+> The performance is a bit worse.
+
+Should one in general use adequate built-in classes and methods when they exist?
+> yes, but because dont implement something that already exists.

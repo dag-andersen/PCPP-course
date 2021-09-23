@@ -1,0 +1,126 @@
+# OS:   Mac OS X; 10.16; x86_64
+# JVM:  Oracle Corporation; 16.0.2
+# CPU:  3,3 GHz Dual-Core Intel Core i7; 4 "cores"
+# Date: 2021-09-13T12:07:53+0200
+Mark1
+ 0,013 s     0,7ns 
+ 0,008 s     0,4ns
+ 0,011 s     0,6ns 
+ 0,015 s     0,7ns
+## Nothing surprising. 
+
+Mark2
+  24,7 ns
+  25,9 ns
+  26,1 ns
+## Nothing surprising. 
+
+Mark3
+  24,6 ns
+  25,2 ns
+  25,7 ns
+  24,5 ns
+  24,2 ns
+  23,9 ns
+  24,0 ns
+  26,5 ns
+  26,0 ns
+  24,4 ns
+## Nothing surprising. 
+
+Mark4
+  25,4 ns +/-  1,997
+  27,9 ns +/-  2,196
+  24,1 ns +/-  0,876
+  24,4 ns +/-  1,131
+
+## Nothing surprising. 
+
+Mark5
+ 417,8 ns +/-   656,91          2
+ 258,1 ns +/-   169,53          4
+ 214,4 ns +/-    63,10          8
+ 144,2 ns +/-   107,16         16
+ 150,2 ns +/-    87,43         32
+ 108,8 ns +/-     9,77         64
+ 130,1 ns +/-    60,53        128
+  69,1 ns +/-    56,98        256
+  63,3 ns +/-    29,87        512
+  51,1 ns +/-     5,39       1024
+  33,9 ns +/-     0,23       2048
+  56,2 ns +/-    28,54       4096
+  55,9 ns +/-    55,07       8192
+  32,7 ns +/-     1,19      16384
+  47,9 ns +/-    27,61      32768
+  37,8 ns +/-     4,32      65536
+  35,8 ns +/-     3,82     131072
+  30,0 ns +/-     2,78     262144
+  26,2 ns +/-     3,34     524288
+  24,0 ns +/-     0,84    1048576
+  24,4 ns +/-     1,57    2097152
+  23,9 ns +/-     0,78    4194304
+  23,8 ns +/-     0,32    8388608
+  23,7 ns +/-     0,18   16777216
+
+## This Mark is the one that deviates the most from Sestoft results.
+## In my results there are more outliers. This outlier measurement may
+## be caused by the garbage collector accidentally performing some work
+## at that time, or the just-in-time compiler, or some other external disturbance.
+
+Mark6
+ multiply                            515,1 ns     953,55          2
+ multiply                            192,2 ns      96,39          4
+ multiply                            172,5 ns      61,36          8
+ multiply                            149,1 ns      26,30         16
+ multiply                            166,6 ns      67,03         32
+ multiply                             51,9 ns      41,22         64
+ multiply                             97,4 ns     127,78        128
+ multiply                             39,5 ns      11,22        256
+ multiply                             87,4 ns     112,79        512
+ multiply                             47,6 ns       2,50       1024
+ multiply                             33,1 ns       0,28       2048
+ multiply                             43,1 ns      22,57       4096
+ multiply                             39,6 ns      22,42       8192
+ multiply                             30,3 ns       7,69      16384
+ multiply                             32,0 ns      11,51      32768
+ multiply                             31,7 ns      10,36      65536
+ multiply                             27,3 ns       3,31     131072
+ multiply                             26,8 ns       3,16     262144
+ multiply                             24,5 ns       1,07     524288
+ multiply                             24,2 ns       0,93    1048576
+ multiply                             24,0 ns       0,61    2097152
+ multiply                             23,8 ns       0,49    4194304
+ multiply                             23,7 ns       0,23    8388608
+ multiply                             25,4 ns       1,76   16777216
+
+## Nothing surprising. 
+
+Mark7
+ pow                                  20,8 ns       0,08   16777216
+ exp                                   9,9 ns       0,07   33554432
+ log                                  21,5 ns       0,08   16777216
+ sin                                  24,7 ns       0,38   16777216
+ cos                                  24,8 ns       0,14   16777216
+ tan                                  30,4 ns       1,82   16777216
+ asin                                112,5 ns       4,49    4194304
+ acos                                123,7 ns       4,54    2097152
+ atan                                 28,5 ns       0,65   16777216
+
+## Nothing surprising. 
+
+
+## TLDR:
+## Are they plausible? Yes they match Sestofts result fairly well.
+## Any surprises? Only Mark 5 deviates a bit. In my results there are more outliers. This outlier measurement may
+## be caused by the garbage collector accidentally performing some work
+## at that time, or the just-in-time compiler, or some other external disturbance.
+
+# 3.2.2
+hashCode()                            2,6 ns       0,01  134217728
+Point creation                       47,2 ns       7,76    8388608
+Thread's work                      5130,1 ns      44,35      65536
+Thread create                       790,4 ns       5,44     524288
+Thread create start               69726,6 ns     700,00       4096
+Thread create start join          86529,8 ns    5724,43       4096
+ai value = 1474500000
+Uncontended lock                     20,1 ns       1,82   16777216
