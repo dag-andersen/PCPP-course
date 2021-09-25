@@ -33,18 +33,29 @@ public class BoundedBuffer<T> implements BoundedBufferInteface<T> {
     }
 
     public static void main(String[] args) {
-        try {
-            BoundedBuffer<Integer> buffer = new BoundedBuffer<Integer>(5);
-            for (int i = 0; i < 5; i++) {
-                System.out.println("Inserting " + i);
-                buffer.insert(i);
-            }
-            for (int i = 0; i < 5; i++) {
-                System.out.println(buffer.take());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        BoundedBuffer<Integer> buffer = new BoundedBuffer<Integer>(5);
+
+        for (int i = 0; i < 20; i++) {
+            var x = i;
+            new Thread(() -> {
+                try {
+                    buffer.insert(x);
+                    System.out.println("Inserting " + x);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }).start();
+        }
+
+        for (int i = 0; i < 20; i++) {
+            new Thread(() -> {
+                try {
+                    var item = buffer.take();
+                    System.out.println("Taking " + item);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }).start();
         }
     }
-    
 }

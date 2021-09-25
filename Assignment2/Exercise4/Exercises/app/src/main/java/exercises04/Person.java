@@ -1,4 +1,7 @@
+
 package exercises04;
+
+import java.util.*;
 
 public class Person {
 
@@ -45,16 +48,23 @@ public class Person {
 
     public static void main(String[] args) {
         // Starts threads that create a new persons
-        for (int i = 0; i < 10000; i++) {
+
+        for (int i = 0; i < 100; i++) {
+            var x = i;
             new Thread(() -> {
                 var aaa = new Person();
+                System.out.print(" " + aaa.getId());
+            }).start();
+
+            new Thread(() -> {
+                var aaa = new Person(x * 10);
                 System.out.print(" " + aaa.getId());
             }).start();
         }
 
         // Wait for the threads to finish
         try {
-            Thread.sleep(1000);
+            Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

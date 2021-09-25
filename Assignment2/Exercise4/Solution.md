@@ -1,9 +1,14 @@
+# 4
+
+Command: `gradle -PmainClass=exercises04.BoundedBuffer run`
+
 # 4.1.2
+
 
 Thread safe definition:
 > A class is said to be thread-safe if and only if no concurrent execution of method calls or field accesses (read/write) result in race conditions
 
-To analyse thread-safe in a class, we must identify/consider:
+To analyze thread-safe in a class, we must identify/consider:
 - Identify the class state
     > The state is only accessed behind a "lock"
 - Make sure that mutable class state does not escape
@@ -22,12 +27,21 @@ No I cant come up with a solution where barriers help. Barriers would block unti
 
 --------------------------------------------------------------------------
 
-# 4.2.2
+# 4.2
+Command: `gradle -PmainClass=exercises04.Person run --console="plain"`
 
-I would assume that the constructor is safe, since accessing an object's fields are not possible before it has been constructed. Every time `Person.idCounter` is used i synchronize/lock the static variable.
+## 4.2.1
+Check implementation.
 
-# 4.2.4 
-No you can never be sure.
+## 4.2.2
+Explain why your implementation of the Person constructor is thread-safe
+> Subsequent accesses will not refer to a partially created object BECAUSE the id is final, which ensures happens-before relation. The static person counter `Person.idCounter` is synchronized/locked based on the class itself, so it should not be possible to have any racecoditions. The reason it locks on `Person.class` is because you can't lock on a primitive like `idCounter` (long).
+
+## 4.2.3
+Check implementation. 
+
+## 4.2.4 
+No you can never be sure. I don't know how to prove it is thread safe.
 
 
 
