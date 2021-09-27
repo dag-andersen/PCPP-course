@@ -25,18 +25,18 @@ public class TestWordStream {
       BufferedReader reader = new BufferedReader(new FileReader(filename));
       // TO DO: Implement properly
       return Stream.<String>empty();
-    } catch (IOException exn) { 
+    } catch (IOException exn) {
       return Stream.<String>empty();
     }
   }
 
   public static boolean isPalindrome(String s) {
     // TO DO: Implement properly
-    return false; 
+    return false;
   }
 
-  public static Map<Character,Integer> letters(String s) {
-    Map<Character,Integer> res = new TreeMap<>();
+  public static Map<Character, Integer> letters(String s) {
+    Map<Character, Integer> res = new TreeMap<>();
     // TO DO: Implement properly
     return res;
   }
