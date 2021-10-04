@@ -17,14 +17,14 @@ public class QuicksortExecutor{
     for (int n= 1; n < maxThreads; n= 2*n)  runSize(n, 1_000_000, threshold);
   }
 
-	private static void testSorted(int[] a) {
-	 int c= 0;
-	 while ( c < (a.length-1) ) 
-		if (a[c] <= a[c+1]) c= c+1;
-		else { System.out.println("Error at "+c); break; }
-	 //a is ordered
-	 if (c == a.length-1) System.out.println("Success!");
-	}
+  private static void testSorted(int[] a) {
+   int c= 0;
+   while ( c < (a.length-1) ) 
+    if (a[c] <= a[c+1]) c= c+1;
+    else { System.out.println("Error at "+c); break; }
+   //a is ordered
+   if (c == a.length-1) System.out.println("Success!");
+  }
 
   private static void setUpQS(int threadCount, int[] intArray, countProblems c, int threshold) {
     new runProblemHeap(intArray, threadCount, c, threshold).start();
