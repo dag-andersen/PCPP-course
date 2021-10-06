@@ -1,3 +1,4 @@
+package org.example.exercises6;
 // For week 3
 // sestoft@itu.dk * 2014-09-04
 // thdy@itu.dk * 2019
@@ -44,7 +45,7 @@ class Histogram1 implements Histogram {
   public int getCount(int bin) {
     return counts[bin];
   }
-    
+
   public float getPercentage(int bin){
     return getCount(bin) / getTotal() * 100;
   }
@@ -52,7 +53,7 @@ class Histogram1 implements Histogram {
   public int getSpan() {
     return counts.length;
   }
-    
+
   public int getTotal(){
     return total;
   }

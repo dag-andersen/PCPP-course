@@ -1,14 +1,16 @@
+package org.example.exercises6;
+
 import java.util.Random;
 public class AccountExperiments {
   static final int N = 10; // Number of accounts
   static final int NO_TRANSACTION=5;
-  
+
   static final Account[] accounts = new Account[N];
   static final Random rnd = new Random();
 
   public static void main(String[] args){ new AccountExperiments(); }
-   
-  public AccountExperiments() { 
+
+  public AccountExperiments() {
   // Create empty accounts
     for( int i = 0; i < N; i++){
       accounts[i] = new Account(i);
@@ -26,11 +28,11 @@ public class AccountExperiments {
     }
     return 0.0;
   }
-  
+
   private static void doTransaction(Transaction t){
     t.transfer();
   }
-  
+
   static class Transaction {
     final Account source, target;
     final long amount;
@@ -39,13 +41,13 @@ public class AccountExperiments {
       this.source = source;
       this.target = target;
     }
-    
+
     public void transfer(){
       source.withdraw(amount);
       try{Thread.sleep(50);} catch(Exception e){}; // Simulate transaction time
       target.deposit(amount);
     }
-    
+
     public String toString(){
       return "Transfer " + amount + " from " + source.id + " to " + target.id;
     }
@@ -56,7 +58,7 @@ public class AccountExperiments {
     public final int id;
     private long balance = 0;
     Account( int id ){ this.id = id;}
-    public void deposit(long sum){ balance += sum; } 
+    public void deposit(long sum){ balance += sum; }
     public void withdraw(long sum){ balance -= sum; }
     public long getBalance(){ return balance; }
   }

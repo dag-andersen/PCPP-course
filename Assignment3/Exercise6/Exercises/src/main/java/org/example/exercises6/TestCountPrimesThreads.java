@@ -1,10 +1,10 @@
+package org.example.exercises6;
 // Counting primes, using multiple threads for better performance.
 // (Much simplified from CountprimesMany.java)
 // sestoft@itu.dk * 2014-08-31, 2015-09-15
 // modified rikj@itu.dk 2017-09-20
 // modified jst@itu.dk 2021-09-24
 import java.util.function.IntToDoubleFunction;
-import java.util.concurrent.atomic.AtomicLong;
 
 public class TestCountPrimesThreads {
   public static void main(String[] args) { new TestCountPrimesThreads(); }
@@ -14,11 +14,10 @@ public class TestCountPrimesThreads {
     Mark7("countSequential", i -> countSequential(range));
     for (int c=1; c<=32; c++) {
     final int threadCount = c;
-      Mark7(String.format("countParallelN %2d", threadCount), 
-            i -> countParallelN(range, threadCount));
-
-      Mark7(String.format("countParallelNLocal %2d", threadCount), 
-            i -> countParallelNLocal(range, threadCount));
+    Mark7(String.format("countParallelN %2d", threadCount),
+          i -> countParallelN(range, threadCount));
+    Mark7(String.format("countParallelNLocal %2d", threadCount),
+          i -> countParallelNLocal(range, threadCount));
     }
   }
 
@@ -34,7 +33,7 @@ public class TestCountPrimesThreads {
     long count = 0;
     final int from = 0, to = range;
     for (int i=from; i<to; i++)
-      if (isPrime(i)) 
+      if (isPrime(i))
         count++;
     return count;
   }
@@ -45,18 +44,18 @@ public class TestCountPrimesThreads {
     final LongCounter lc = new LongCounter();
     Thread[] threads = new Thread[threadCount];
     for (int t=0; t<threadCount; t++) {
-        final int from = perThread * t, 
-            to = (t+1==threadCount) ? range : perThread * (t+1); 
+        final int from = perThread * t,
+            to = (t+1==threadCount) ? range : perThread * (t+1);
         threads[t] = new Thread( () -> {
                 for (int i=from; i<to; i++)
                     if (isPrime(i))
                         lc.increment();
             });
     }
-    for (int t=0; t<threadCount; t++) 
+    for (int t=0; t<threadCount; t++)
       threads[t].start();
     try {
-      for (int t=0; t<threadCount; t++) 
+      for (int t=0; t<threadCount; t++)
         threads[t].join();
         //System.out.println("Primes: "+lc.get());
     } catch (InterruptedException exn) { }
@@ -69,8 +68,8 @@ public class TestCountPrimesThreads {
     final long[] results = new long[threadCount];
     Thread[] threads = new Thread[threadCount];
     for (int t=0; t<threadCount; t++) {
-      final int from = perThread * t, 
-        to = (t+1==threadCount) ? range : perThread * (t+1); 
+      final int from = perThread * t,
+        to = (t+1==threadCount) ? range : perThread * (t+1);
       final int threadNo = t;
       threads[t] = new Thread( ()-> {
         long count = 0;
@@ -80,14 +79,14 @@ public class TestCountPrimesThreads {
         results[threadNo] = count;
       });
     }
-    for (int t=0; t<threadCount; t++) 
+    for (int t=0; t<threadCount; t++)
       threads[t].start();
     try {
-      for (int t=0; t<threadCount; t++) 
+      for (int t=0; t<threadCount; t++)
         threads[t].join();
     } catch (InterruptedException exn) { }
     long result = 0;
-    for (int t=0; t<threadCount; t++) 
+    for (int t=0; t<threadCount; t++)
       result += results[t];
     return result;
   }
@@ -97,16 +96,16 @@ public class TestCountPrimesThreads {
   public static double Mark7(String msg, IntToDoubleFunction f) {
     int n = 10, count = 1, totalCount = 0;
     double dummy = 0.0, runningTime = 0.0, st = 0.0, sst = 0.0;
-    do { 
+    do {
       count *= 2;
       st = sst = 0.0;
       for (int j=0; j<n; j++) {
         Timer t = new Timer();
-        for (int i=0; i<count; i++) 
+        for (int i=0; i<count; i++)
           dummy += f.applyAsDouble(i);
         runningTime = t.check();
-        double time = runningTime * 1e9 / count; 
-        st += time; 
+        double time = runningTime * 1e9 / count;
+        st += time;
         sst += time * time;
         totalCount += count;
       }

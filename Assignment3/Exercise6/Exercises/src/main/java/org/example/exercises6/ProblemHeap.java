@@ -1,4 +1,6 @@
+package org.example.exercises6;
 import java.util.*;
+
 class ProblemHeap {
 	private List<Problem> heap= new LinkedList<Problem>();
 
@@ -12,7 +14,7 @@ class ProblemHeap {
 	public void add(Problem newProblem) {
 		synchronized(heap) {
 			heap.add(newProblem);
-			heap.notify();  // will wake up a single thread 
+			heap.notify();  // will wake up a single thread
 		}
 	}
 
@@ -22,9 +24,9 @@ class ProblemHeap {
 		synchronized(heap) {
 			while ( heap.size() == 0 ) {
 				part= part-1;
-				if (part <= 0) return null;				
+				if (part <= 0) return null;
 				heap.wait();
-				part= part+1; 
+				part= part+1;
 			}
 			return heap.remove(0);
 		}

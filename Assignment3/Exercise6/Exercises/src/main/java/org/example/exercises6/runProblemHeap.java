@@ -1,9 +1,9 @@
+package org.example.exercises6;
 //Quicksort implemented with Executors
 //Version jst@itu.dk 13/09 - 2021
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.io.IOException;
 
 class runProblemHeap extends Thread {  // runProblemHeap is a Task Producer
   private final ExecutorService pool;
