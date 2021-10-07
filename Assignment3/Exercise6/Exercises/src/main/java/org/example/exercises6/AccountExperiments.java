@@ -1,6 +1,8 @@
 package org.example.exercises6;
 
 import java.util.Random;
+import java.util.stream.IntStream;
+  
 public class AccountExperiments {
   static final int N = 10; // Number of accounts
   static final int NO_TRANSACTION=5;
@@ -16,7 +18,7 @@ public class AccountExperiments {
       accounts[i] = new Account(i);
     }
     //insert code using Mark7 to measure execution time
-    //...
+    IntStream.rangeClosed(1, 5).forEach(t -> Benchmark.Mark7( t + " Transactions :", (i) -> doNTransactions(t)));  
   }
 
   private static double doNTransactions(int noTransactions){
