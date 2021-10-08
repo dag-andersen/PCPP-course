@@ -18,7 +18,7 @@ public class AccountExperiments {
       accounts[i] = new Account(i);
     }
     //insert code using Mark7 to measure execution time
-    IntStream.rangeClosed(1, 5).forEach(t -> Benchmark.Mark7( t + " Transactions :", (i) -> doNTransactions(t)));  
+    IntStream.iterate(1, i -> i * 2).limit(5).forEach(t -> Benchmark.Mark7( t + " Transactions :", (i) -> doNTransactions(t)));  
   }
 
   private static double doNTransactions(int noTransactions){
