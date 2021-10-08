@@ -1,10 +1,10 @@
 
 **/.settings/
 **/bin/
+**/build/*
 **/.idea/
 **/.classpath
 **/.project
 *.class
 **/.gradle/
 **/.vscode
-*.bin

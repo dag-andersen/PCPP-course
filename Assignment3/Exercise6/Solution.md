@@ -105,7 +105,120 @@ The results show exactly what was mentioned above. The code with the ordered loc
 
 ### 6.1.3
 
+`gradle -PmainClass=org.example.exercises6.ThreadsAccountExperimentsMany run`
+
+```
+Transfer:  4829 from 8 to 2    PoolActiveCount: 10
+Transfer:  2465 from 4 to 9    PoolActiveCount:  8
+Transfer:  4674 from 3 to 1    PoolActiveCount: 10
+Transfer:  4921 from 5 to 0    PoolActiveCount:  8
+Transfer:  2369 from 0 to 5    PoolActiveCount:  9
+Transfer:  2779 from 3 to 6    PoolActiveCount:  8
+Transfer:   761 from 2 to 8    PoolActiveCount:  8
+Transfer:  4317 from 4 to 6    PoolActiveCount:  8
+Transfer:  3739 from 2 to 5    PoolActiveCount:  9
+Transfer:  3584 from 3 to 6    PoolActiveCount:  8
+Transfer:   485 from 0 to 7    PoolActiveCount: 10
+Transfer:  2051 from 3 to 1    PoolActiveCount: 10
+Transfer:  2320 from 2 to 6    PoolActiveCount: 10
+Transfer:  4667 from 8 to 2    PoolActiveCount: 10
+Transfer:  3142 from 2 to 7    PoolActiveCount: 10
+Transfer:  4240 from 4 to 8    PoolActiveCount: 10
+Transfer:   430 from 3 to 7    PoolActiveCount: 10
+Transfer:   740 from 8 to 6    PoolActiveCount: 10
+Transfer:  3779 from 9 to 0    PoolActiveCount: 10
+Transfer:  3112 from 4 to 8    PoolActiveCount: 10
+Transfer:   387 from 6 to 1    PoolActiveCount: 10
+Transfer:  4437 from 5 to 0    PoolActiveCount: 10
+Transfer:  2195 from 0 to 8    PoolActiveCount: 10
+Transfer:  3873 from 0 to 7    PoolActiveCount: 10
+Transfer:  4660 from 4 to 5    PoolActiveCount: 10
+Transfer:   841 from 6 to 7    PoolActiveCount: 10
+Transfer:  4916 from 5 to 2    PoolActiveCount: 10
+Transfer:  3660 from 0 to 2    PoolActiveCount: 10
+Transfer:  3475 from 8 to 9    PoolActiveCount: 10
+Transfer:   958 from 9 to 3    PoolActiveCount: 10
+Transfer:  3014 from 4 to 6    PoolActiveCount: 10
+Transfer:  4458 from 9 to 1    PoolActiveCount: 10
+Transfer:  3849 from 1 to 3    PoolActiveCount: 10
+Transfer:  4307 from 5 to 7    PoolActiveCount: 10
+Transfer:  2363 from 1 to 8    PoolActiveCount: 10
+Transfer:  1069 from 0 to 6    PoolActiveCount: 10
+Transfer:  4857 from 8 to 5    PoolActiveCount: 10
+Transfer:  2786 from 6 to 7    PoolActiveCount: 10
+Transfer:  4286 from 4 to 5    PoolActiveCount: 10
+Transfer:  3257 from 4 to 8    PoolActiveCount: 10
+Transfer:  4617 from 6 to 7    PoolActiveCount: 10
+Transfer:  4537 from 2 to 3    PoolActiveCount:  9
+Transfer:  3420 from 4 to 8    PoolActiveCount:  9
+Transfer:  3476 from 1 to 2    PoolActiveCount:  9
+Transfer:   748 from 0 to 2    PoolActiveCount:  9
+Transfer:  5079 from 2 to 0    PoolActiveCount:  7
+Transfer:  4542 from 8 to 1    PoolActiveCount:  7
+Transfer:  4969 from 3 to 0    PoolActiveCount:  7
+Transfer:  2133 from 6 to 1    PoolActiveCount:  7
+Transfer:  3088 from 1 to 3    PoolActiveCount:  1
+```
+
 ### 6.1.4
+
+`gradle -PmainClass=org.example.exercises6.ThreadsAccountExperimentsMany run`
+
+```
+Transfer:  4279 from 3 to 9   PoolActiveCount:   8
+Transfer:  4134 from 2 to 3   PoolActiveCount:  10
+Transfer:  4663 from 1 to 3   PoolActiveCount:   8
+Transfer:  2850 from 3 to 6   PoolActiveCount:   7
+Transfer:  1115 from 0 to 3   PoolActiveCount:  10
+Transfer:  4146 from 4 to 6   PoolActiveCount:   8
+Transfer:  3198 from 2 to 5   PoolActiveCount:   7
+Transfer:  3667 from 3 to 0   PoolActiveCount:   9
+Transfer:  1764 from 2 to 3   PoolActiveCount:   7
+Transfer:   784 from 1 to 2   PoolActiveCount:   8
+Transfer:  3656 from 8 to 4   PoolActiveCount:  10
+Transfer:  4045 from 6 to 8   PoolActiveCount:  10
+Transfer:  3169 from 4 to 9   PoolActiveCount:  10
+Transfer:  3080 from 9 to 6   PoolActiveCount:  10
+Transfer:  3814 from 8 to 3   PoolActiveCount:  10
+Transfer:  1925 from 3 to 6   PoolActiveCount:  10
+Transfer:  2115 from 5 to 0   PoolActiveCount:  10
+Transfer:  3468 from 7 to 1   PoolActiveCount:  10
+Transfer:  3610 from 4 to 1   PoolActiveCount:  10
+Transfer:   645 from 4 to 5   PoolActiveCount:  10
+Transfer:  1289 from 1 to 9   PoolActiveCount:   9
+Transfer:  4861 from 1 to 2   PoolActiveCount:  10
+Transfer:  4302 from 5 to 1   PoolActiveCount:  10
+Transfer:   476 from 0 to 2   PoolActiveCount:  10
+Transfer:   343 from 7 to 0   PoolActiveCount:  10
+Transfer:  2627 from 9 to 5   PoolActiveCount:  10
+Transfer:  2898 from 4 to 2   PoolActiveCount:  10
+Transfer:  2471 from 2 to 8   PoolActiveCount:  10
+Transfer:  3846 from 8 to 4   PoolActiveCount:  10
+Transfer:  4091 from 1 to 8   PoolActiveCount:  10
+Transfer:  1771 from 7 to 8   PoolActiveCount:  10
+Transfer:  2796 from 6 to 7   PoolActiveCount:  10
+Transfer:  2888 from 1 to 3   PoolActiveCount:  10
+Transfer:  1625 from 1 to 2   PoolActiveCount:  10
+Transfer:  3627 from 3 to 5   PoolActiveCount:  10
+Transfer:   387 from 4 to 0   PoolActiveCount:  10
+Transfer:  1113 from 6 to 2   PoolActiveCount:  10
+Transfer:   410 from 8 to 0   PoolActiveCount:  10
+Transfer:  3280 from 4 to 0   PoolActiveCount:  10
+Transfer:   330 from 4 to 2   PoolActiveCount:  10
+Transfer:  4315 from 8 to 6   PoolActiveCount:  10
+Transfer:  3298 from 8 to 0   PoolActiveCount:  10
+Transfer:  2898 from 2 to 3   PoolActiveCount:  10
+Transfer:   893 from 0 to 1   PoolActiveCount:  10
+Transfer:  3782 from 2 to 4   PoolActiveCount:  10
+Transfer:   791 from 3 to 9   PoolActiveCount:  10
+Transfer:  1466 from 5 to 1   PoolActiveCount:  10
+Transfer:  3520 from 1 to 3   PoolActiveCount:  10
+Transfer:  3781 from 2 to 6   PoolActiveCount:  10
+Transfer:  2193 from 1 to 3   PoolActiveCount:  10
+
+Total number of tasks: 50
+Pool isShutdown(): true
+```
 
 ## 6.2
 
