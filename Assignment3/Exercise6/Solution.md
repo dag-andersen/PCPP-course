@@ -224,8 +224,102 @@ Pool isShutdown(): true
 
 ### 6.2.1
 
+`gradle -PmainClass=org.example.exercises6.TestCountPrimesThreads run`
+
+```
+> Task :run
+countSequential                11758016,4 ns 1221146,18         32
+countParallelN  1               9514672,8 ns  772878,34         32
+countParallelNLocal  1         10796756,8 ns  670485,49         32
+countParallelN  2               8553553,4 ns 2528674,36         32
+countParallelNLocal  2          7834105,2 ns  351349,96         32
+countParallelN  3               6506091,7 ns  782426,90         64
+countParallelNLocal  3          6447525,6 ns  487803,44         64
+countParallelN  4               4634838,1 ns  326948,46         64
+countParallelNLocal  4          5597435,0 ns  583789,90         64
+countParallelN  5               5432779,1 ns  899237,44         64
+countParallelNLocal  5          7421265,0 ns 2237981,54         64
+countParallelN  6               6589752,6 ns 1111896,52         64
+countParallelNLocal  6          6888625,5 ns 1061676,16         64
+countParallelN  7               4917982,6 ns  631859,04         64
+countParallelNLocal  7          6084972,9 ns  631282,91         64
+countParallelN  8               4730483,7 ns  180522,49         64
+countParallelNLocal  8          6122596,0 ns 1423380,29         64
+countParallelN  9               4970632,7 ns  458212,58         64
+countParallelNLocal  9          6491240,0 ns 1584251,41         64
+countParallelN 10               5004648,1 ns  519320,49         64
+countParallelNLocal 10          5281487,4 ns  112142,96         64
+countParallelN 11               4967768,9 ns  651840,93         64
+countParallelNLocal 11          5181369,1 ns   99521,90         64
+countParallelN 12               4507421,4 ns  119486,66         64
+countParallelNLocal 12          5223524,6 ns  157792,58         64
+countParallelN 13               4587724,4 ns  117525,53         64
+countParallelNLocal 13          5589714,8 ns  781855,06         64
+countParallelN 14               4931208,6 ns  273970,61         64
+countParallelNLocal 14          7744005,6 ns 2617511,32         32
+countParallelN 15               7667419,0 ns 2418312,74         32
+countParallelNLocal 15          5720381,1 ns  590867,39         64
+countParallelN 16               4740009,8 ns  322761,92         64
+countParallelNLocal 16          9987077,6 ns 5308734,20         16
+countParallelN 17              13832468,5 ns 4831315,40         32
+countParallelNLocal 17         10043260,2 ns 3338865,48         64
+countParallelN 18               7522804,1 ns 2200817,63         64
+countParallelNLocal 18          8932486,4 ns 2841852,62         32
+countParallelN 19              11976849,1 ns 1563356,27         32
+countParallelNLocal 19         10871346,3 ns 2273246,12         32
+countParallelN 20              10145021,9 ns 1826454,18         32
+countParallelNLocal 20          7077905,5 ns 1488777,78         32
+countParallelN 21               8999739,3 ns 2624710,93         64
+countParallelNLocal 21          8015354,7 ns 1726174,93         32
+countParallelN 22               4870701,6 ns  104183,85         64
+countParallelNLocal 22          6716060,7 ns 1540701,03         64
+countParallelN 23               7113380,3 ns 2433895,94         64
+countParallelNLocal 23         13210799,1 ns 4154590,02         32
+countParallelN 24               9547882,7 ns 2232809,72         64
+countParallelNLocal 24          6384067,4 ns  283702,92         64
+countParallelN 25               5603469,3 ns  627692,14         64
+countParallelNLocal 25          7526125,7 ns 1606587,34         32
+countParallelN 26               5799452,0 ns  393710,61         64
+countParallelNLocal 26          6865248,8 ns 1737456,25         32
+countParallelN 27               5141808,4 ns  284187,12         64
+countParallelNLocal 27          7704844,8 ns 2516787,83         64
+countParallelN 28               6369349,1 ns 1499569,30         64
+countParallelNLocal 28          6001101,5 ns  530985,64         64
+countParallelN 29               5135704,0 ns  113978,59         64
+countParallelNLocal 29          7211219,9 ns 1833438,56         64
+countParallelN 30               6729882,2 ns 1657597,75         32
+countParallelNLocal 30          8051193,7 ns 3257885,61         64
+countParallelN 31               7373818,7 ns 2805062,12         32
+countParallelNLocal 31          7623396,2 ns 2634503,32         64
+countParallelN 32               5279250,8 ns  312123,23         64
+countParallelNLocal 32          8202147,4 ns 4333091,66         64
+```
+
+On this mac on average countParallelN is faster than countParallelNLocal... but it is not much.
+Both functions are pretty slow, since creating new threads are expensive. 
+
 
 ### 6.2.2
+
+```
+countSequential                12300697,3 ns 2001315,15         16
+countParallelN  1              11854995,7 ns 1607923,96         32
+countParallelNLocal  1         10317676,7 ns  374457,15         32
+countParallelNPool  1               722,2 ns     565,35     262144
+countParallelN  2              11096109,7 ns   82520,86         32
+countParallelNLocal  2         11406972,3 ns 3876281,00         32
+countParallelNPool  2              1756,2 ns    1053,40     524288
+countParallelN  3              10301107,3 ns  557045,62         32
+countParallelNLocal  3          9466289,3 ns 1133579,13         32
+countParallelNPool  3              2471,7 ns    2172,01     131072
+countParallelN  4               8261462,3 ns  212698,90         32
+countParallelNLocal  4          7740132,4 ns  280965,49         64
+countParallelNPool  4             55341,6 ns  103563,73      32768
+countParallelN  5               7871683,8 ns  189219,30         32
+countParallelNLocal  5          7312722,2 ns  213476,73         64
+```
+
+The threadpool function performs much better.
 
 
 ## 6.3
