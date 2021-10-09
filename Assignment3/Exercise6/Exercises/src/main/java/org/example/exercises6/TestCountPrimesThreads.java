@@ -1,6 +1,5 @@
 package org.example.exercises6;
 
-import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 // Counting primes, using multiple threads for better performance.
