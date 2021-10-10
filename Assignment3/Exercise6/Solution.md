@@ -325,6 +325,12 @@ The threadpool function performs much better.
 ## 6.3
 
 ### 6.3.1
+Added *final* keyword to `counts` to make it immutable.
+Added *volatile* keyword to `total` to ensure visibility.
+
+`getSpan()` does not need to be *synchronized* since `counts` is *immutable*.
+`getTotal()` does not need to be *synchronized* since it is only reading and `total` is *volatile*.
+`getPercentage(int bin)` does not need to be *synchronized* since it only use *synchronized* methods.   
 
 ### 6.3.2
 

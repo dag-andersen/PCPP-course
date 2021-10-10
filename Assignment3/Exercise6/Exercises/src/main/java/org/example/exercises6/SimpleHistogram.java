@@ -129,7 +129,7 @@ class Histogram2 implements Histogram {
     total++;
   }
 
-  public int getCount(int bin) {
+  public synchronized int getCount(int bin) {
     return counts[bin];
   }
 
