@@ -325,14 +325,48 @@ The threadpool function performs much better.
 ## 6.3
 
 ### 6.3.1
-Added *final* keyword to `counts` to make it immutable.
+
+Added *final* keyword to `counts` to make it immutable.\
 Added *volatile* keyword to `total` to ensure visibility.
 
-`getSpan()` does not need to be *synchronized* since `counts` is *immutable*.
-`getTotal()` does not need to be *synchronized* since it is only reading and `total` is *volatile*.
+`getSpan()` does not need to be *synchronized* since `counts` is *immutable*.\
+`getTotal()` does not need to be *synchronized* since it is only reading and `total` is *volatile*.\
 `getPercentage(int bin)` does not need to be *synchronized* since it only use *synchronized* methods.   
 
 ### 6.3.2
 
+`gradle -PmainClass=org.example.exercises6.SimpleHistogram run`
 
-
+```
+   0:         2
+   1:    348513
+   2:    979274
+   3:   1232881
+   4:   1015979
+   5:    660254
+   6:    374791
+   7:    197039
+   8:     98949
+   9:     48400
+  10:     23251
+  11:     11019
+  12:      5199
+  13:      2403
+  14:      1124
+  15:       510
+  16:       233
+  17:       102
+  18:        45
+  19:        21
+  20:         7
+  21:         3
+  22:         1
+  23:         0
+  24:         0
+  25:         0
+  26:         0
+  27:         0
+  28:         0
+  29:         0
+        5000000
+```

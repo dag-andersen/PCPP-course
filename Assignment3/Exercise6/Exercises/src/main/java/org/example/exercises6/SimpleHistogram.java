@@ -10,42 +10,82 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 interface Histogram {
   public void increment(int bin);
+
   public int getCount(int bin);
+
   public float getPercentage(int bin);
+
   public int getSpan();
+
   public int getTotal();
 }
 
 public class SimpleHistogram {
 
+  // Exercise 6.3.2
+  static final int N = 30;
   private static final int NO_THREADS = 10;
   private static final ThreadPoolExecutor pool = (ThreadPoolExecutor) Executors.newFixedThreadPool(NO_THREADS);
-  private static CountTransactions count = new CountTransactions();
+  private static CountTransactions counter = new CountTransactions();
 
   public static void main(String[] args) {
-    final Histogram histogram = new Histogram1(30);
+    final Histogram histogram = new Histogram2(N);
     final int range = 4_999_999;
-    final int perThread = range / NO_THREADS;
-    for (int c = 1; c <= 30; c++) {
-      
-      final int threadCount = c;
-      final int from = perThread * c, to = (c + 1 == threadCount) ? range : perThread * (c + 1);
-      count.incr();
-      pool.submit(new Runnable() {
-        public void run() {
-          for (int i = from; i < to; i++)
-            if (isPrime(i))
-              histogram.increment(1);
 
-          count.decrease();
-          if (count.isZero()) {
-            count.finished.release();
+    for (int i = 0; i <= range; i++) {
+
+      int p = i;
+
+      Runnable task = new Runnable() {
+        public void run() {
+          int noPrimeFactors = primeFactors(p);
+          histogram.increment(noPrimeFactors);
+
+          counter.decrease();
+
+          if (counter.isZero()) {
+            counter.finished.release();
             pool.shutdown();
+            dump(histogram);
           }
         }
-      });
+      };
+
+      counter.incr();
+      pool.execute(task);
+
     }
-    dump(histogram);
+  }
+
+  // Exercise 6.3.2
+  public static int primeFactors(int n) {
+    if (n == 0)
+      return 0;
+
+    int count = 0;
+
+    // count the number of 2s that divide n
+    while (n % 2 == 0) {
+      count++;
+      n /= 2;
+    }
+
+    // n must be odd at this point. So we can
+    // skip one element (Note i = i + 2)
+    for (int i = 3; i <= Math.sqrt(n); i += 2) {
+      // While i divides n, count i and divide n
+      while (n % i == 0) {
+        count++;
+        n /= i;
+      }
+    }
+
+    // This condition is to handle the case when
+    // n is a prime number greater than 2
+    if (n > 2)
+      count++;
+
+    return count;
   }
 
   public static void dump(Histogram histogram) {
@@ -53,36 +93,6 @@ public class SimpleHistogram {
       System.out.printf("%4d: %9d%n", bin, histogram.getCount(bin));
     }
     System.out.printf("      %9d%n", histogram.getTotal());
-  }
-
-  private static boolean isPrime(int n) {
-    int k = 2;
-    while (k * k <= n && n % k != 0)
-      k++;
-    return n >= 2 && k * k > n;
-  }
-
-  private static long countParallelNPool(int range, int threadCount) {
-    final int perThread = range / threadCount;
-    final LongCounter lc = new LongCounter();
-    for (int t = 0; t < threadCount; t++) {
-      final int from = perThread * t, to = (t + 1 == threadCount) ? range : perThread * (t + 1);
-      count.incr();
-      pool.submit(new Runnable() {
-        public void run() {
-          for (int i = from; i < to; i++)
-            if (isPrime(i))
-              lc.increment();
-
-          count.decrease();
-          if (count.isZero()) {
-            count.finished.release();
-            pool.shutdown();
-          }
-        }
-      });
-    }
-    return lc.get();
   }
 }
 
@@ -116,6 +126,7 @@ class Histogram1 implements Histogram {
   }
 }
 
+// Exercise 6.3.1
 class Histogram2 implements Histogram {
   final private int[] counts;
   volatile private int total = 0;
