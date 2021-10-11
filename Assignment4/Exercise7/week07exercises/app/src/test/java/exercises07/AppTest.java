@@ -12,6 +12,71 @@ public class AppTest {
     }
 
     @Test public void test1() {
-        assert(2==1+1);
+        ReadWriteCASLock lock = new ReadWriteCASLock();
+
+        assert(lock.writerTryLock() == true);
+        assert(lock.writerTryLock() == false);
+        assert(lock.readerTryLock() == false);
+        lock.writerUnlock();
+        
+        assert(lock.readerTryLock() == true);
+        assert(lock.readerTryLock() == false); // this should maybe catch an exception
+
+        //assertThrows(RuntimeException.class, lock.readerTryLock());
+        System.out.println("4");
+        
+        assert(lock.writerTryLock() == false);
+        
+        lock.readerUnlock();
     }
+
+    @Test public void test2() {
+        ReadWriteCASLock lock = new ReadWriteCASLock();
+        Thread t1 = new Thread(() -> {
+            // 1
+            assert lock.writerTryLock() == true;
+            sleep(1000);
+            // 3
+            assert lock.writerTryLock() == false;
+            assert lock.readerTryLock() == false;
+            lock.writerUnlock();
+            sleep(1000);
+            // 5
+            assert lock.readerTryLock() == true;
+            assert lock.writerTryLock() == false;
+            sleep(1000);
+            // 7
+            lock.readerUnlock();
+        });
+        Thread t2 = new Thread(() -> {
+            sleep(500);
+            // 2
+            assert lock.readerTryLock() == false;
+            assert lock.writerTryLock() == false;
+            sleep(1000);
+            // 4
+            assert lock.readerTryLock() == true;
+            assert lock.writerTryLock() == false;
+            sleep(1000);
+            // 6
+            lock.readerUnlock();
+        });
+        t1.start();
+        t2.start();
+        try {
+            t1.join();
+            t2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void sleep(int ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    
 }
