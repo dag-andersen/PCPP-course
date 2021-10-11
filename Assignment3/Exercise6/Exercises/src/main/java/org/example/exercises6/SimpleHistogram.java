@@ -26,35 +26,27 @@ public class SimpleHistogram {
   static final int N = 30;
   private static final int NO_THREADS = 10;
   private static final ThreadPoolExecutor pool = (ThreadPoolExecutor) Executors.newFixedThreadPool(NO_THREADS);
-  private static CountTransactions counter = new CountTransactions();
 
   public static void main(String[] args) {
     final Histogram histogram = new Histogram2(N);
-    final int range = 4_999_999;
+    final int range = 5_000_000;
 
-    for (int i = 0; i <= range; i++) {
+        for (int i = 0; i < range; i++) {
+            int p = i;
 
-      int p = i;
+            Runnable task = new Runnable() {             
+                public void run() {
+                    histogram.increment(primeFactors(p));
 
-      Runnable task = new Runnable() {
-        public void run() {
-          int noPrimeFactors = primeFactors(p);
-          histogram.increment(noPrimeFactors);
+                    if (histogram.getTotal() >= range) {
+                      pool.shutdown();
+                      dump(histogram);
+                    }
+                }
+            };
 
-          counter.decrease();
-
-          if (counter.isZero()) {
-            counter.finished.release();
-            pool.shutdown();
-            dump(histogram);
-          }
+            pool.execute(task);
         }
-      };
-
-      counter.incr();
-      pool.execute(task);
-
-    }
   }
 
   // Exercise 6.3.2
