@@ -13,9 +13,6 @@ public class CasHistogram implements Histogram {
 
     public CasHistogram(int n) {
         buckets = new AtomicInteger[n];
-        for (int i = 0; i < n; i++) {
-            buckets[i] = new AtomicInteger(0);
-        }
     }
 
     public void increment(int bin) {
