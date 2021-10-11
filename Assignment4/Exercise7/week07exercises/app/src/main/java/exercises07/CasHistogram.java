@@ -8,6 +8,7 @@ public class CasHistogram implements Histogram {
 
     private final AtomicReference<Thread> holder = new AtomicReference<Thread>();
 
+    // TA Question: Should this be an AtomicReference<AtomicInteger[]> or not?
     private final AtomicInteger[] buckets;
 
     public CasHistogram(int n) {
