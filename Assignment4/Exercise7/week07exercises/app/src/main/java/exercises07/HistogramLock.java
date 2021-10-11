@@ -32,6 +32,7 @@ public class HistogramLock implements Histogram {
   public synchronized int getAndClear(int bin) {
     int val = bins[bin];
     bins[bin] = 0;
+    total -= val;
     return val;
   }
 }
