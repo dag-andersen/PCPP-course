@@ -301,6 +301,8 @@ Both functions are pretty slow, since creating new threads are expensive.
 
 ### 6.2.2
 
+### This is completely wrong
+
 ```
 countSequential                12300697,3 ns 2001315,15         16
 countParallelN  1              11854995,7 ns 1607923,96         32
