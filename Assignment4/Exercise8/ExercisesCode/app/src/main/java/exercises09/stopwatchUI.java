@@ -7,10 +7,10 @@ import java.util.concurrent.TimeUnit;
 // User interfaca for Stopwatch, October 7, 2021 by Jørgen Staunstrup, ITU, jst@itu.dk
 
 class stopwatchUI {
-  final private String allzero = "0:00:00";
+  final private String allzero = "0:00:00:000";
   private int lx;
   private static JFrame lf;
-  private SecCounter lC;
+  private MilliSecCounter lC;
   
   final private JButton startButton= new JButton("Start");	
   final private JButton stopButton= new JButton("Stop");
@@ -20,11 +20,15 @@ class stopwatchUI {
   public void updateTime(){
     synchronized(this) {
       if ( lC.incr() ) {
-        int seconds= lC.seconds;
-        int hours= seconds/3600;
-        int minutes= (seconds%3600)/60;
-        int secs= seconds%60;
-        String time= String.format(Locale.getDefault(),	"%d:%02d:%02d", hours, minutes, secs);
+        int milliseconds = lC.milliSeconds;
+        int secs = milliseconds/1000;
+
+        int seconds= secs%60;
+        int hours= secs/3600;
+        int minutes= (secs%3600)/60;
+
+        int milli = milliseconds%1000;
+        String time= String.format(Locale.getDefault(),	"%d:%02d:%02d:%03d", hours, minutes, seconds, milli);
         tf.setText(time);
       }
     }
@@ -35,10 +39,10 @@ class stopwatchUI {
   
   public stopwatchUI(int x, JFrame jF){
     lx= x+50; lf= jF;	
-    tf.setBounds(lx, 10, 60, 20); 
+    tf.setBounds(lx, 10, 120, 20); 
     tf.setText(allzero);
 
-    lC= new SecCounter(0, false);
+    lC= new MilliSecCounter(0, false);
 
     startButton.setBounds(lx, 50, 95, 25); 
     startButton.addActionListener(new ActionListener(){  
@@ -58,7 +62,7 @@ class stopwatchUI {
     resetButton.addActionListener(new ActionListener(){  
       public void actionPerformed(ActionEvent e){  
         synchronized(this) {
-          lC= new SecCounter(0, false);
+          lC= new MilliSecCounter(0, false);
           tf.setText(allzero);
         }} 
       }); 
