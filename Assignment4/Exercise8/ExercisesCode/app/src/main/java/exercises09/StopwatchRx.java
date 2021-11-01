@@ -27,7 +27,6 @@ public class StopwatchRx {
     myUI = new StopwatchUIRx(0, f);
 
     timer.filter(val -> myUI.running()).subscribe(display);
-
     rxPushStart.subscribe(displaySetRunningTrue);
     rxPushStop.subscribe(displaySetRunningFalse);
     rxPushReset.subscribe(displaySetAllZero);
@@ -160,7 +159,4 @@ public class StopwatchRx {
       });
     }
   });
-
 }
-
-
