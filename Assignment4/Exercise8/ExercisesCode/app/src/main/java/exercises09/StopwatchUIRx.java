@@ -3,32 +3,26 @@ package exercises09;
 import java.awt.event.*;  
 import javax.swing.*; 
 import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
 // User interfaca for Stopwatch, October 7, 2021 by Jørgen Staunstrup, ITU, jst@itu.dk
 
-class stopwatchUI {
+class StopwatchUIRx {
   final private String allzero = "0:00:00:000";
   private int lx;
   private static JFrame lf;
   private MilliSecCounter lC;
   
-  final private JButton startButton= new JButton("Start");	
-  final private JButton stopButton= new JButton("Stop");
-  final private JButton resetButton= new JButton("Reset");		
+  final public JButton startButton= new JButton("Start");	
+  final public JButton stopButton= new JButton("Stop");
+  final public JButton resetButton= new JButton("Reset");		
   final private JTextField tf= new JTextField();
   
-  public stopwatchUI(int x, JFrame jF){
+  public StopwatchUIRx(int x, JFrame jF){
     lx= x+50; lf= jF;	
     tf.setBounds(lx, 10, 120, 20); 
     tf.setText(allzero);
 
-    lC= new MilliSecCounter(0, false);
+    lC = new MilliSecCounter(0, false);
 
     startButton.setBounds(lx, 50, 95, 25); 
     startButton.addActionListener(new ActionListener(){  
@@ -61,6 +55,21 @@ class stopwatchUI {
   }
 
   public boolean running() { return lC.running();  }
+
+  public void startTime() {
+    lC.setRunning(true); 
+  }
+
+  public void stopTime() {
+    lC.setRunning(false); 
+  }
+
+  public void resetTime() {
+    synchronized(this) {
+        lC= new MilliSecCounter(0, false);
+        tf.setText(allzero);
+      }
+  }
   
   public void updateTime(){
     synchronized(this) {
