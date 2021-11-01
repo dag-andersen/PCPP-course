@@ -14,8 +14,13 @@
 ## 9.2
 
 ### 9.2.1
+> gradle -PmainClass=exercises09.TestRx run
+
 ### 9.2.2
+> gradle -PmainClass=exercises09.ObservableTester run
+
 ### 9.2.3
+> gradle -PmainClass=exercises09.ObservableTester2 run
 
 ## 9.3
 
