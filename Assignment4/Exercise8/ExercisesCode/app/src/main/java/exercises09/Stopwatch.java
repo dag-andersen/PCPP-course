@@ -8,6 +8,9 @@ import java.util.concurrent.TimeUnit;
    http://shop.oreilly.com/product/0636920029045.do
    Modified to Java, October 7, 2021 by Jørgen Staunstrup, ITU, jst@itu.dk */
 
+
+   // gradle -PmainClass=exercises09.Stopwatch run 
+   
 public class Stopwatch {
   public static void main(String[] args) { new Stopwatch(); }
 
