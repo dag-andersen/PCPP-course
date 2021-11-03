@@ -27,6 +27,7 @@
 ### 9.3.1
 
 ## 9.4
+> gradle -PmainClass=exercises09.TestWordStream run
 
 ### 9.4.1
 ### 9.4.2
