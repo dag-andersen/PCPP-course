@@ -25,6 +25,7 @@
 ## 9.3
 
 ### 9.3.1
+> gradle -PmainClass=exercises09.StopwatchRx run
 
 ## 9.4
 > gradle -PmainClass=exercises09.TestWordStream run
