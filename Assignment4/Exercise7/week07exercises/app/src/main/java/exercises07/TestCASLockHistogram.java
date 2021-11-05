@@ -20,8 +20,6 @@ class TestCASLockHistogram {
         // Evaluating performance of CAS vs Locks histograms Uncomment
         // snippet below to evaluate the performance both Histogram
         // implementations
-        /* 
-        */
         int noThreads = 32;
         int range = 100_000;
 

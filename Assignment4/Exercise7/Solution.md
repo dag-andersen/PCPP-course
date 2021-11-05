@@ -3,6 +3,9 @@
 ## 7.1
 
 ### 7.1.1
+> Write a class Cas Histogram so that it implements the above interface.Explain why the methods increment, getBins, getSpan() and getAndClear are thread-safe...
+
+??
 
 ### 7.1.2
 
@@ -10,14 +13,6 @@ We don't really see any noteworthy difference... In theory the cas implementatio
 
 ## 7.2
 
-### 7.2.1
+Runs the tests:
 
-### 7.2.2
-
-### 7.2.3
-
-### 7.2.4
-
-### 7.2.5
-
-### 7.2.6
+`gradle -PmainClass=exercises07.AppTest test`
