@@ -4,24 +4,22 @@ import akka.actor.typed.ActorRef;
 import akka.actor.typed.Behavior;
 import akka.actor.typed.javadsl.*;
 
-import java.util.Random;
-
 public class MobileApp extends AbstractBehavior<MobileApp.MobileAppCommand> {
     
     /* --- Messages ------------------------------------- */
     public interface MobileAppCommand {
     }
 
-    public static final class TransactionMessage implements MobileAppCommand {
+    public static final class MakePaymentMessage implements MobileAppCommand {
         public final ActorRef<Account.AccountCommand> from;
         public final ActorRef<Account.AccountCommand> to;
-        public final int message;
+        public final int amount;
 
-        public TransactionMessage(ActorRef<Account.AccountCommand> from, ActorRef<Account.AccountCommand> to,
+        public MakePaymentMessage(ActorRef<Account.AccountCommand> from, ActorRef<Account.AccountCommand> to,
                 int message) {
             this.to = to;
             this.from = from;
-            this.message = message;
+            this.amount = message;
         }
     }
 
@@ -43,15 +41,25 @@ public class MobileApp extends AbstractBehavior<MobileApp.MobileAppCommand> {
     @Override
     public Receive<MobileAppCommand> createReceive() {
         return newReceiveBuilder()
-            .onMessage(TransactionMessage.class, this::onTransaction)
+            .onMessage(MakePaymentMessage.class, this::onTransaction)
             .build();
     }
 
     /* --- Handlers ------------------------------------- */
-    public Behavior<MobileAppCommand> onTransaction(TransactionMessage msg) {
+    public Behavior<MobileAppCommand> onTransaction(MakePaymentMessage msg) {
         getContext().getLog().info("{}: Subscription confirmed by observable", getContext().getSelf().path().name());
         
-        banks.tell(new Bank.TransactionMessage(msg.from, msg.to, msg.message));
+        for (int i = 0; i < 100; i++) {
+            // get random amount between 0 and 100
+            int amount = (int) (Math.random() * 10);
+            // random boolean
+            if (Math.random() < 0.5) {
+                banks.tell(new Bank.TransactionMessage(msg.from, msg.to, amount));
+            } else {
+                banks.tell(new Bank.TransactionMessage(msg.to, msg.from, amount));
+            }
+        }
+
         return this;
     }
 }

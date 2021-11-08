@@ -4,8 +4,6 @@ import akka.actor.typed.ActorRef;
 import akka.actor.typed.Behavior;
 import akka.actor.typed.javadsl.*;
 
-import java.util.stream.IntStream;
-
 public class SystemGuardian extends AbstractBehavior<SystemGuardian.KickOff> {
     /* --- Messages ------------------------------------- */
     public static final class KickOff {
@@ -32,16 +30,18 @@ public class SystemGuardian extends AbstractBehavior<SystemGuardian.KickOff> {
 
     /* --- Handlers ------------------------------------- */
     public Behavior<KickOff> onKickOff(KickOff msg) {
+
+        
         // spawn the observable server
-        final ActorRef<Bank.BankCommand> observableServer = getContext().spawn(Bank.create(),
-                "observable_server");
+        final ActorRef<Bank.BankCommand> bank = getContext().spawn(Bank.create(), "bank");
+        final ActorRef<MobileApp.MobileAppCommand> mobileApp = getContext().spawn(MobileApp.create(bank), "mobile-app");
 
         // spawn the N observers, and tell them to start
-        final int N = 4;
-        IntStream.range(1, N + 1).forEach((id) -> {
-            final ActorRef<MobileApp.MobileAppCommand> observer = getContext().spawn(MobileApp.create(observableServer),
-                    "observer_" + id);
-        });
+        final ActorRef<Account.AccountCommand> account1 = getContext().spawn(Account.create(), "account-" + 1);
+        final ActorRef<Account.AccountCommand> account2 = getContext().spawn(Account.create(), "account-" + 2);
+
+        mobileApp.tell(new MobileApp.MakePaymentMessage(account1, account2, 100));
+
         return this;
     }
 }

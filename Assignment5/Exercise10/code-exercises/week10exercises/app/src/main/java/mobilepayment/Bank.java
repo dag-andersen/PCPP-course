@@ -13,13 +13,13 @@ public class Bank extends AbstractBehavior<Bank.BankCommand> {
     public static final class TransactionMessage implements BankCommand {
         public final ActorRef<Account.AccountCommand> from;
         public final ActorRef<Account.AccountCommand> to;
-        public final int message;
+        public final int amount;
 
-        public TransactionMessage(ActorRef<Account.AccountCommand> from, 
-                ActorRef<Account.AccountCommand> to, int message) {
+        public TransactionMessage(ActorRef<Account.AccountCommand> from, ActorRef<Account.AccountCommand> to,
+                int message) {
             this.to = to;
             this.from = from;
-            this.message = message;
+            this.amount = message;
         }
     }
 
@@ -38,17 +38,16 @@ public class Bank extends AbstractBehavior<Bank.BankCommand> {
     /* --- Message handling ----------------------------- */
     @Override
     public Receive<BankCommand> createReceive() {
-        return newReceiveBuilder()
-            .onMessage(TransactionMessage.class, this::onTransactionMessage)
-            .build();
+        return newReceiveBuilder().onMessage(TransactionMessage.class, this::onTransactionMessage).build();
     }
 
     /* --- Handlers ------------------------------------- */
 
     public Behavior<BankCommand> onTransactionMessage(TransactionMessage msg) {
-        getContext().getLog().info("{}: Broadcast of message {} to {} from {}",
-            getContext().getSelf().path().name(), msg.message, msg.to.path().name(), msg.from.path().name());
-        msg.to.tell(new Account.DepositMessage(msg.message));
+        getContext().getLog().info("{}: Broadcast of message {} to {} from {}", getContext().getSelf().path().name(),
+                msg.amount, msg.to.path().name(), msg.from.path().name());
+        msg.from.tell(new Account.DepositMessage(-msg.amount));
+        msg.to.tell(new Account.DepositMessage(msg.amount));
         return this;
     }
 }
