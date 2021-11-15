@@ -7,27 +7,25 @@ import java.io.IOException;
 
 public class Main {
 
-    public static void main(String[] args) {
-    
-	// actor system
-	final ActorSystem<Guardian.KickOff> guardian =
-	    ActorSystem.create(Guardian.create(), "maths_server");
+	public static void main(String[] args) {
 
-	// init message
-	guardian.tell(new Guardian.KickOff());
+		// actor system
+		final ActorSystem<Guardian.KickOff> guardian = ActorSystem.create(Guardian.create(), "maths_server");
 
-	// wait until user presses enter
-	try {
-	    System.out.println(">>> Press ENTER to exit <<<");
-	    System.in.read();
+		// init message
+		guardian.tell(new Guardian.KickOff());
+
+		// wait until user presses enter
+		try {
+			System.out.println(">>> Press ENTER to exit <<<");
+			System.in.read();
+		} catch (IOException e) {
+			System.out.println("Error " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			guardian.terminate();
+		}
+
 	}
-	catch (IOException e) {
-	    System.out.println("Error " + e.getMessage());
-	    e.printStackTrace();
-	} finally {
-	    guardian.terminate();
-	}
-    
-    }
-    
+
 }
