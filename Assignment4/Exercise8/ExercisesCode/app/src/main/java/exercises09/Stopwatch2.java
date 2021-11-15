@@ -1,8 +1,6 @@
 package exercises09;
 
-import java.awt.event.*;
 import javax.swing.*;
-import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 /* This example is inspired by the StopWatch app in Head First. Android Development
    http://shop.oreilly.com/product/0636920029045.do

@@ -11,7 +11,6 @@ import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
 class TextAndButton {
-	private static JFrame lf;
 	private static JButton nameButton= new JButton("Stop");
   private static JTextField userText= new JTextField(14);
   public static void main(String[] args){ new TextAndButton(); }

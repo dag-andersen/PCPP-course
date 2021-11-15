@@ -3,13 +3,7 @@ package exercises09;
 import java.awt.event.*;  
 import javax.swing.*; 
 import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
 // User interfaca for Stopwatch, October 7, 2021 by Jørgen Staunstrup, ITU, jst@itu.dk
 
 class stopwatchUI {

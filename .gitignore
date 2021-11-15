@@ -10,3 +10,5 @@
 **/.vscode
 
 **/.metals/
+
+**/models.json

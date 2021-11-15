@@ -13,7 +13,6 @@ import io.reactivex.disposables.Disposable;
 class rxButton {
   public static void main(String[] args){ new rxButton(); }
 
-  private JFrame lf;
 	private final JButton nameButton= new JButton("Name");
   
   public rxButton() { 
