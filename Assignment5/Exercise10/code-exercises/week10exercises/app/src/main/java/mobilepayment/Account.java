@@ -3,14 +3,12 @@ package mobilepayment;
 import akka.actor.typed.Behavior;
 import akka.actor.typed.javadsl.*;
 
+public class Account extends AbstractBehavior<Account.Command> {
 
-public class Account extends AbstractBehavior<Account.AccountCommand> {
-
-    /* --- Messages ------------------------------------- */
-    public interface AccountCommand {
+    interface Command {
     }
 
-    public static final class DepositMessage implements AccountCommand {
+    public static final class DepositMessage implements Command {
         public final int amount;
 
         public DepositMessage(int amount) {
@@ -18,31 +16,27 @@ public class Account extends AbstractBehavior<Account.AccountCommand> {
         }
     }
 
-    /* --- State ---------------------------------------- */
-    private final int balance;
-
-    /* --- Constructor ---------------------------------- */
-    private Account(ActorContext<AccountCommand> context) {
-        super(context);
-        balance = 2000;
-    }
-
-    /* --- Actor initial behavior ----------------------- */
-    public static Behavior<AccountCommand> create() {
+    public static Behavior<Command> create() {
         return Behaviors.setup(Account::new);
     }
 
-    /* --- Message handling ----------------------------- */
+    private int balance = 1000;
+
+    private Account(ActorContext<Command> context) {
+        super(context);
+    }
+
     @Override
-    public Receive<AccountCommand> createReceive() {
+    public Receive<Command> createReceive() {
         return newReceiveBuilder().onMessage(DepositMessage.class, this::onDepositMessage).build();
     }
 
-    /* --- Handlers ------------------------------------- */
-
-    public Behavior<AccountCommand> onDepositMessage(DepositMessage msg) {
-        getContext().getLog().info("{}: Broadcast of message {}",
-                getContext().getSelf().path().name(), msg.amount);
+    public Behavior<Command> onDepositMessage(DepositMessage msg) {
+        String amount = String.format("%9d", msg.amount);
+        String oldBalance = String.format("%9d", balance);
+        balance += msg.amount;
+        String newBalance = String.format("%14d", balance);
+        System.out.println(getContext().getSelf().path().name() + oldBalance + amount + newBalance);
         return this;
     }
 }

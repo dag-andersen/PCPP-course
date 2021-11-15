@@ -9,9 +9,8 @@ public class Main {
 	public static void main(String[] args) {
 
 		// actor system
-		final ActorSystem<SystemGuardian.KickOff> guardian =
-			ActorSystem.create(SystemGuardian.create(),
-				"broadcaster_system");
+		final ActorSystem<SystemGuardian.KickOff> guardian = ActorSystem.create(SystemGuardian.create(),
+				"mobile_payment_system");
 
 		// init message
 		guardian.tell(new SystemGuardian.KickOff());
