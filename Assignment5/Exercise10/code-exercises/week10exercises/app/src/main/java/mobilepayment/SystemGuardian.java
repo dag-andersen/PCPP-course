@@ -33,9 +33,6 @@ public class SystemGuardian extends AbstractBehavior<SystemGuardian.KickOff> {
         final ActorRef<Account.Command> a1 = getContext().spawn(Account.create(), "account_" + 1);
         final ActorRef<Account.Command> a2 = getContext().spawn(Account.create(), "account_" + 2);
 
-        String header = String.format("%10s-%10s-%8s-%12s", "ACCOUNT ", "BALANCE ", "AMOUNT ", "NEW BALANCE");
-        System.out.println(header);
-
         mobileApp.tell(new MobileApp.MakePaymentMessage(b1, a1, a2, 100));
         mobileApp2.tell(new MobileApp.MakePaymentMessage(b2, a2, a1, 50));
 

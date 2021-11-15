@@ -35,6 +35,9 @@ public class Bank extends AbstractBehavior<Bank.Command> {
     }
 
     public Behavior<Command> onTransactionMessage(TransactionMessage msg) {
+        getContext().getLog().info("{}: Broadcast of TransactionMessage with amount {} to {} from {}", getContext().getSelf().path().name(),
+                msg.amount, msg.to.path().name(), msg.from.path().name());
+
         msg.from.tell(new Account.DepositMessage(-msg.amount));
         msg.to.tell(new Account.DepositMessage(msg.amount));
         return this;

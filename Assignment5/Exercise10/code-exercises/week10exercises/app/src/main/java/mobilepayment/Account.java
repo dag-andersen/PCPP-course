@@ -32,11 +32,8 @@ public class Account extends AbstractBehavior<Account.Command> {
     }
 
     public Behavior<Command> onDepositMessage(DepositMessage msg) {
-        String amount = String.format("%9d", msg.amount);
-        String oldBalance = String.format("%9d", balance);
+        //getContext().getLog().info("{}: Broadcast of DepositMessage {}", getContext().getSelf().path().name(), msg.amount);
         balance += msg.amount;
-        String newBalance = String.format("%14d", balance);
-        System.out.println(getContext().getSelf().path().name() + oldBalance + amount + newBalance);
         return this;
     }
 }

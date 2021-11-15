@@ -38,6 +38,8 @@ public class MobileApp extends AbstractBehavior<MobileApp.MobileAppCommand> {
     }
 
     public Behavior<MobileAppCommand> onTransaction(MakePaymentMessage msg) {
+        getContext().getLog().info("{}: Subscription confirmed by observable", getContext().getSelf().path().name());
+        
         // Exercise 3
         // msg.bank.tell(new Bank.TransactionMessage(msg.from, msg.to, msg.amount));
 
