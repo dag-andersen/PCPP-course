@@ -50,7 +50,7 @@ public class Server extends AbstractBehavior<Server.ServerCommand> {
 
 	HashMap<ActorRef<Worker.WorkerCommand>, Task> activeWorkers;
 	LinkedList<ActorRef<Worker.WorkerCommand>> idleWorkers;
-	LinkedList<TaskAndClient> pendingTasks; 
+	LinkedList<TaskAndClient> pendingTasks;
 	int minWorkers;
 	int maxWorkers;
 
@@ -63,13 +63,13 @@ public class Server extends AbstractBehavior<Server.ServerCommand> {
 		this.minWorkers = minWorkers;
 		this.maxWorkers = maxWorkers;
 
-		while(idleWorkers.size() < minWorkers) {
+		while (idleWorkers.size() < minWorkers) {
 			var worker = spawnWorker("worker-" + (idleWorkers.size() + activeWorkers.size()));
 			idleWorkers.add(worker);
 		}
 	}
 
-	private ActorRef<Worker.WorkerCommand> spawnWorker(String name) { 
+	private ActorRef<Worker.WorkerCommand> spawnWorker(String name) {
 		ActorRef<Worker.WorkerCommand> worker = getContext().spawn(Worker.create(getContext().getSelf()), name);
 		getContext().watch(worker);
 		return worker;
@@ -84,9 +84,7 @@ public class Server extends AbstractBehavior<Server.ServerCommand> {
 	@Override
 	public Receive<ServerCommand> createReceive() {
 		return newReceiveBuilder().onMessage(ComputeTasks.class, this::onComputeTasks)
-				.onMessage(WorkDone.class, this::onWorkDone)
-				.onSignal(ChildFailed.class, this::onChildFailed)
-				.build();
+				.onMessage(WorkDone.class, this::onWorkDone).onSignal(ChildFailed.class, this::onChildFailed).build();
 	}
 
 	/* --- Handlers ------------------------------------- */
@@ -101,12 +99,12 @@ public class Server extends AbstractBehavior<Server.ServerCommand> {
 		var worker = spawnWorker(msg.getRef().path().name());
 		idleWorkers.add(worker);
 
-		getContext().getLog().info("{}: Worker {} crashed trying to compute {} due to {}\nNew worker {} spawned and added to idleWorkers.",
-		getContext().getSelf().path().name(),
-		crashedChild.path().name(),nonProcessedTask, msg.cause(),
-		worker.path().name());
+		getContext().getLog().info(
+				"{}: Worker {} crashed trying to compute {} due to {}\nNew worker {} spawned and added to idleWorkers.",
+				getContext().getSelf().path().name(), crashedChild.path().name(), nonProcessedTask, msg.cause(),
+				worker.path().name());
 
-		return this;	
+		return this;
 	}
 
 	public Behavior<ServerCommand> onComputeTasks(ComputeTasks msg) {
