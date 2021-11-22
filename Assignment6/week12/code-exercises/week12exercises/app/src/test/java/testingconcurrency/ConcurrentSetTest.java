@@ -27,9 +27,9 @@ public class ConcurrentSetTest {
     @BeforeEach
     public void initialize() {
         // init set
-        set = new ConcurrentIntegerSetBuggy();
+        //set = new ConcurrentIntegerSetBuggy();
         //set = new ConcurrentIntegerSetSync();
-        // set = new ConcurrentIntegerSetLibrary();
+        set = new ConcurrentIntegerSetLibrary();
     }
 
     @RepeatedTest(5)

@@ -33,4 +33,7 @@ All threads starts adding to the set at the same time.
  ## 12.3
 
  Wrapping the method `Collections.synchronizedSet(Set<T> s)` around the HashSet works by synchronizing the whole collection. This could potentially have a negative impact on performance with all the locks, but it does prevent the interleavings from the previous exercises from happening.
- 
+
+## 12.4
+
+All test passes. This is because the ConcurrentSkipListSet does not hold a count on all the elements it contains, instead it requires a traversal of the elements when getting the size of the set. In our test cases we are not requiring the size of the set before the assertion and when all modifications to the set has happened. If we had a method that would modify the set based on the size, we would likely run into problems while using this method concurrently with the `add` and `remove` method.
