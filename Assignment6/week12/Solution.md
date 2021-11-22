@@ -58,4 +58,8 @@ All threads starts adding to the set at the same time.
 
  Since the size of the set is modified during traversal to get the size, we end up with unsuspected results.
 
- 
+ ## 12.6
+
+ No
+
+ // TODO: elaborate
