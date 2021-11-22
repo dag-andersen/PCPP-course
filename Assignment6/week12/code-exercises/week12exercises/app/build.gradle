@@ -55,5 +55,8 @@ test {
     useJUnitPlatform()
     testLogging {
 	events "PASSED", "SKIPPED", "FAILED", "STANDARD_OUT", "STANDARD_ERROR"
+
+      showStackTraces true
+      exceptionFormat "full"
     }
 }
