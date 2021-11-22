@@ -27,7 +27,7 @@ public class ConcurrentSetTest {
     public void initialize() {
         // init set
         // set = new ConcurrentIntegerSetBuggy();
-        //set = new ConcurrentIntegerSetSync();
+        // set = new ConcurrentIntegerSetSync();
         set = new ConcurrentIntegerSetLibrary();
     }
 
@@ -95,15 +95,20 @@ public class ConcurrentSetTest {
     @DisplayName("Exercise_05_SetLibrary")
     public void exercise_05_SetLibrary() {
         barrier = new CyclicBarrier(nrThreads + 1);
-        var N = 10_000;
+        var N = 100_000;
+
+        for (int i = 0; i < N; i++) {
+            set.add(i);
+        }
 
         for (int i = 1; i <= nrThreads; i++) {
             pool.execute(() -> {
                 try {
                     barrier.await();
-                    int size = set.size();
-                    set.add(size);
-                    set.remove(0);
+                    IntStream.range(0, N).forEach(x -> {
+                        int size = set.size();
+                        set.remove(N - size);
+                    });
                     barrier.await();
                 } catch (Exception e) {
                     System.out.println("failed to remove");

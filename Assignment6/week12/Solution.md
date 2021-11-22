@@ -45,13 +45,15 @@ Possible interleaving:
 All threads starts adding to the set at the same time. 
  - Thread 1 start to traverse set to get size
  - Thread 2 start to traverse set to get size
- - Thread 1 find size 0
- - Thread 1 add 0 to set
- - Thread 2 find size 1
+ - Thread 1 find size 100_000
  - Thread 1 remove 0
- - Thread 2 remove 0
+ - Thread 2 find size 100_000
  - Thread 1 start to traverse set to get size
- - Thread 1 find size 1
+ - Thread 2 remove 0 (fails, since it is already removed)
+ - Thread 2 start to traverse set to get size
+ - Thread 1 find size 99_000
+ - Thread 1 remove 1
+ - Thread 2 find size 99_000
  - ....
 
  Since the size of the set is modified during traversal to get the size, we end up with unsuspected results.
