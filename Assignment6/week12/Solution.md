@@ -37,3 +37,23 @@ All threads starts adding to the set at the same time.
 ## 12.4
 
 All test passes. This is because the ConcurrentSkipListSet does not hold a count on all the elements it contains, instead it requires a traversal of the elements when getting the size of the set. In our test cases we are not requiring the size of the set before the assertion and when all modifications to the set has happened. If we had a method that would modify the set based on the size, we would likely run into problems while using this method concurrently with the `add` and `remove` method.
+
+## 12.5
+
+Possible interleaving: 
+
+All threads starts adding to the set at the same time. 
+ - Thread 1 start to traverse set to get size
+ - Thread 2 start to traverse set to get size
+ - Thread 1 find size 0
+ - Thread 1 add 0 to set
+ - Thread 2 find size 1
+ - Thread 1 remove 0
+ - Thread 2 remove 0
+ - Thread 1 start to traverse set to get size
+ - Thread 1 find size 1
+ - ....
+
+ Since the size of the set is modified during traversal to get the size, we end up with unsuspected results.
+
+ 
