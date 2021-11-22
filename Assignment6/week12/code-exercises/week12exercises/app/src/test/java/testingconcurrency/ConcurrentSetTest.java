@@ -32,13 +32,13 @@ public class ConcurrentSetTest {
         // set = new ConcurrentIntegerSetLibrary();
     }
 
-    @Test
+    @RepeatedTest(5)
     @DisplayName("Exercise_01_Add")
     public void exercise_01_Add() {
         barrier = new CyclicBarrier(nrThreads + 1);
-        var N = 10_000;
+        var N = 2_000;
 
-        for (int i = 1; i <= nrThreads; i++) {
+        for (int i = 0; i < nrThreads; i++) {
             pool.execute(() -> {
                 try {
                     barrier.await();
@@ -57,6 +57,38 @@ public class ConcurrentSetTest {
             e.printStackTrace();
         }
 
-        assertTrue(N == set.size(), "set.size() == " + set.size() + ", but we expected " + N);
+        assertTrue(set.size() == N, "set.size() == " + set.size() + ", but we expected " + N);
+    }
+
+    @RepeatedTest(5)
+    @DisplayName("Exercise_02_Remove")
+    public void exercise_02_Remove() {
+        barrier = new CyclicBarrier(nrThreads + 1);
+        var N = 2_000;
+
+        for(int i = 0; i < N; i++) {
+            set.add(i);
+        }
+
+        for (int i = 1; i <= nrThreads; i++) {
+            pool.execute(() -> {
+                try {
+                    barrier.await();
+                    IntStream.range(0, N).forEach(x -> set.remove(x));
+                    barrier.await();
+                } catch (Exception e) {
+                    System.out.println("failed to add");
+                    e.printStackTrace();
+                }
+            });
+        }
+        try {
+            barrier.await();
+            barrier.await();
+        } catch (InterruptedException | BrokenBarrierException e) {
+            e.printStackTrace();
+        }
+
+        assertTrue(set.size() == 0, "set.size() == " + set.size() + ", but we expected " + 0);
     }
 }
