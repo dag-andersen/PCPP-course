@@ -2,7 +2,9 @@
 package testingconcurrency;
 
 import java.util.Set;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentSkipListSet;
 
 public interface ConcurrentIntegerSet {
@@ -38,7 +40,7 @@ class ConcurrentIntegerSetSync implements ConcurrentIntegerSet {
     final private Set<Integer> set;
 
     public ConcurrentIntegerSetSync() {
-        this.set = new HashSet<Integer>();
+        this.set = ConcurrentHashMap.newKeySet();
     }
 
     public boolean add(Integer element) {

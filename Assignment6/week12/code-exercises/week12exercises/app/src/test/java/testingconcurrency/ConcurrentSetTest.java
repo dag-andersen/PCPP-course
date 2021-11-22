@@ -3,9 +3,13 @@ package testingconcurrency;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.stream.IntStream;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.concurrent.BrokenBarrierException;
 
@@ -24,24 +28,21 @@ public class ConcurrentSetTest {
     public void initialize() {
         // init set
         set = new ConcurrentIntegerSetBuggy();
-        // set = new ConcurrentIntegerSetSync();
+        //set = new ConcurrentIntegerSetSync();
         // set = new ConcurrentIntegerSetLibrary();
     }
 
-    @RepeatedTest(10)
+    @Test
     @DisplayName("Exercise_01_Add")
     public void exercise_01_Add() {
         barrier = new CyclicBarrier(nrThreads + 1);
-        var N = 3;
+        var N = 10_000;
 
-        for (int i = 0; i < nrThreads; i++) {
+        for (int i = 1; i <= nrThreads; i++) {
             pool.execute(() -> {
                 try {
                     barrier.await();
-                    for (int j = 0; j < N; j++) {
-                        int size = set.size();
-                        set.add(size);
-                    }
+                    IntStream.range(0, N).forEach(x -> set.add(x));
                     barrier.await();
                 } catch (Exception e) {
                     System.out.println("failed to add");
@@ -56,6 +57,6 @@ public class ConcurrentSetTest {
             e.printStackTrace();
         }
 
-        assertTrue(N * nrThreads == set.size(), "set.size() == " + set.size() + ", but we expected " + N * nrThreads);
+        assertTrue(N == set.size(), "set.size() == " + set.size() + ", but we expected " + N);
     }
 }
