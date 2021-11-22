@@ -40,7 +40,7 @@ class ConcurrentIntegerSetSync implements ConcurrentIntegerSet {
     final private Set<Integer> set;
 
     public ConcurrentIntegerSetSync() {
-        this.set = ConcurrentHashMap.newKeySet();
+        this.set = Collections.synchronizedSet(new HashSet<>());
     }
 
     public boolean add(Integer element) {

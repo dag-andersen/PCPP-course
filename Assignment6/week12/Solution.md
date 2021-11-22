@@ -29,3 +29,8 @@ All threads starts adding to the set at the same time.
  - Thread 1 decrement the size of the set
  - Thread 2 remove 42 from the set (properly fails?)
  - Thread 2 decrement the size of the set
+
+ ## 12.3
+
+ Wrapping the method `Collections.synchronizedSet(Set<T> s)` around the HashSet works by synchronizing the whole collection. This could potentially have a negative impact on performance with all the locks, but it does prevent the interleavings from the previous exercises from happening.
+ 
