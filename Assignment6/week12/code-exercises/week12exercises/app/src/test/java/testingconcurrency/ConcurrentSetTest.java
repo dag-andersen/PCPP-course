@@ -9,17 +9,16 @@ public class ConcurrentSetTest {
     private ConcurrentIntegerSet set;
 
     // TODO: Very likely you should add more variables here
-        
 
     // Uncomment the appropriate line below to choose the class to
     // test
     // Remember that @BeforeEach is executed before each test
     @BeforeEach
     public void initialize() {
-	// init set
-	set = new ConcurrentIntegerSetBuggy();
-	// set = new ConcurrentIntegerSetSync();	
-	// set = new ConcurrentIntegerSetLibrary();
+        // init set
+        set = new ConcurrentIntegerSetBuggy();
+        // set = new ConcurrentIntegerSetSync();
+        // set = new ConcurrentIntegerSetLibrary();
     }
 
     // TODO: Define your tests below

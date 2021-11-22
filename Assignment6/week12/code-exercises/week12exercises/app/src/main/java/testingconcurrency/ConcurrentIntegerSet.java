@@ -7,27 +7,29 @@ import java.util.concurrent.ConcurrentSkipListSet;
 
 public interface ConcurrentIntegerSet {
     public boolean add(Integer element);
+
     public boolean remove(Integer element);
-    public int size();    
+
+    public int size();
 }
 
 class ConcurrentIntegerSetBuggy implements ConcurrentIntegerSet {
     final private Set<Integer> set;
 
     public ConcurrentIntegerSetBuggy() {
-	this.set = new HashSet<Integer>();
+        this.set = new HashSet<Integer>();
     }
 
     public boolean add(Integer element) {
-	return set.add(element);
+        return set.add(element);
     }
 
     public boolean remove(Integer element) {
-	return set.remove(element);
+        return set.remove(element);
     }
 
     public int size() {
-	return set.size();
+        return set.size();
     }
 }
 
@@ -36,19 +38,19 @@ class ConcurrentIntegerSetSync implements ConcurrentIntegerSet {
     final private Set<Integer> set;
 
     public ConcurrentIntegerSetSync() {
-	this.set = new HashSet<Integer>();
+        this.set = new HashSet<Integer>();
     }
 
     public boolean add(Integer element) {
-	return set.add(element);
+        return set.add(element);
     }
 
     public boolean remove(Integer element) {
-	return set.remove(element);
+        return set.remove(element);
     }
 
     public int size() {
-	return set.size();
+        return set.size();
     }
 }
 
@@ -56,20 +58,18 @@ class ConcurrentIntegerSetLibrary implements ConcurrentIntegerSet {
     final private Set<Integer> set;
 
     public ConcurrentIntegerSetLibrary() {
-	this.set = new ConcurrentSkipListSet<Integer>();
+        this.set = new ConcurrentSkipListSet<Integer>();
     }
 
     public boolean add(Integer element) {
-	return set.add(element);
+        return set.add(element);
     }
 
     public boolean remove(Integer element) {
-	return set.remove(element);
+        return set.remove(element);
     }
 
     public int size() {
-	return set.size();
+        return set.size();
     }
 }
-
-    
