@@ -20,18 +20,16 @@ public class ConcurrentSetTest {
     private final static ExecutorService pool = Executors.newCachedThreadPool();
     private static final int nrThreads = 8;
 
-    // Uncomment the appropriate line below to choose the class to
-    // test
     // Remember that @BeforeEach is executed before each test
     @BeforeEach
     public void initialize() {
         // init set
         // set = new ConcurrentIntegerSetBuggy();
-        // set = new ConcurrentIntegerSetSync();
-        set = new ConcurrentIntegerSetLibrary();
+        set = new ConcurrentIntegerSetSync();
+        // set = new ConcurrentIntegerSetLibrary();
     }
 
-    @RepeatedTest(5)
+    @RepeatedTest(100)
     @DisplayName("Exercise_01_Add")
     public void exercise_01_Add() {
         barrier = new CyclicBarrier(nrThreads + 1);
@@ -59,15 +57,13 @@ public class ConcurrentSetTest {
         assertTrue(set.size() == N, "set.size() == " + set.size() + ", but we expected " + N);
     }
 
-    @RepeatedTest(5)
+    @RepeatedTest(100)
     @DisplayName("Exercise_02_Remove")
     public void exercise_02_Remove() {
         barrier = new CyclicBarrier(nrThreads + 1);
         var N = 2_000;
 
-        for (int i = 0; i < N; i++) {
-            set.add(i);
-        }
+        IntStream.range(0, N).forEach(x -> set.add(x));
 
         for (int i = 1; i <= nrThreads; i++) {
             pool.execute(() -> {
@@ -91,15 +87,13 @@ public class ConcurrentSetTest {
         assertTrue(set.size() == 0, "set.size() == " + set.size() + ", but we expected " + 0);
     }
 
-    @RepeatedTest(10)
+    @RepeatedTest(100)
     @DisplayName("Exercise_05_SetLibrary")
     public void exercise_05_SetLibrary() {
         barrier = new CyclicBarrier(nrThreads + 1);
         var N = 100_000;
 
-        for (int i = 0; i < N; i++) {
-            set.add(i);
-        }
+        IntStream.range(0, N).forEach(x -> set.add(x));
 
         for (int i = 1; i <= nrThreads; i++) {
             pool.execute(() -> {

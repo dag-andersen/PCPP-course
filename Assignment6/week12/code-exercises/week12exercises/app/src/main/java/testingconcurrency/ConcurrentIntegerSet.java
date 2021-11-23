@@ -4,7 +4,6 @@ package testingconcurrency;
 import java.util.Set;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentSkipListSet;
 
 public interface ConcurrentIntegerSet {
@@ -35,7 +34,7 @@ class ConcurrentIntegerSetBuggy implements ConcurrentIntegerSet {
     }
 }
 
-// TODO: Fix this class to pass your tests
+// Fix this class to pass your tests
 class ConcurrentIntegerSetSync implements ConcurrentIntegerSet {
     final private Set<Integer> set;
 
