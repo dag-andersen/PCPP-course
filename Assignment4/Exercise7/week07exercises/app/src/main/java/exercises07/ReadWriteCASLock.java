@@ -64,7 +64,7 @@ class ReadWriteCASLock implements SimpleRWTryLockInterface {
     public void writerUnlock() {
         var current = Thread.currentThread();
         var oldHolder = holder.get();
-        if (oldHolder == null) {
+        if (oldHolder == null || oldHolder instanceof ReaderList) {
             throw new IllegalStateException("No writer to unlock");
         }
         if (oldHolder instanceof Writer) {

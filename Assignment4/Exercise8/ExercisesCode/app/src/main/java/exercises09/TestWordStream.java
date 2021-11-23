@@ -27,7 +27,7 @@ public class TestWordStream {
       System.out.println(exn);
     }
 
-    readWordsRx.subscribe((String v) -> {
+    readWordsRx.filter(line -> line.length() >= 22).take(100).subscribe((String v) -> {
       System.out.println(v);
     });
 
@@ -42,7 +42,7 @@ public class TestWordStream {
     @Override
     public void subscribe(ObservableEmitter<String> e) throws Exception {
       //reader.lines().limit(100).forEach(line -> e.onNext(line));
-      reader.lines().filter(line -> line.length() >= 22).limit(100).forEach(line -> e.onNext(line));
+      reader.lines().forEach(line -> e.onNext(line));
     }
   });
 

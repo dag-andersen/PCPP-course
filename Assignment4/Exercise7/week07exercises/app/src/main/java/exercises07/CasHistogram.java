@@ -32,7 +32,6 @@ public class CasHistogram implements Histogram {
 
     public int getSpan() {
         return buckets.length;
-    
     }
 
     public int getAndClear(int bin) {
