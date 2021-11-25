@@ -5,42 +5,37 @@ import akka.actor.typed.Behavior;
 import akka.actor.typed.javadsl.*;
 
 public class SystemGuardian extends AbstractBehavior<SystemGuardian.KickOff> {
-    /* --- Messages ------------------------------------- */
     public static final class KickOff {
     }
 
-    /* --- State ---------------------------------------- */
-    // empty
-
-    /* --- Constructor ---------------------------------- */
     private SystemGuardian(ActorContext<KickOff> context) {
         super(context);
     }
 
-    /* --- Actor initial behavior ----------------------- */
     public static Behavior<KickOff> create() {
         return Behaviors.setup(SystemGuardian::new);
     }
 
-    /* --- Message handling ----------------------------- */
     @Override
     public Receive<KickOff> createReceive() {
         return newReceiveBuilder().onMessage(KickOff.class, this::onKickOff).build();
     }
 
-    /* --- Handlers ------------------------------------- */
     public Behavior<KickOff> onKickOff(KickOff msg) {
 
-        
-        // spawn the observable server
-        final ActorRef<Bank.BankCommand> bank = getContext().spawn(Bank.create(), "bank");
-        final ActorRef<MobileApp.MobileAppCommand> mobileApp = getContext().spawn(MobileApp.create(bank), "mobile-app");
+        final ActorRef<Bank.Command> b1 = getContext().spawn(Bank.create(), "b1");
+        final ActorRef<Bank.Command> b2 = getContext().spawn(Bank.create(), "b2");
 
-        // spawn the N observers, and tell them to start
-        final ActorRef<Account.AccountCommand> account1 = getContext().spawn(Account.create(), "account-" + 1);
-        final ActorRef<Account.AccountCommand> account2 = getContext().spawn(Account.create(), "account-" + 2);
+        final ActorRef<MobileApp.MobileAppCommand> mobileApp1 = getContext().spawn(MobileApp.create(b1),
+                "mobile_app_1");
+        final ActorRef<MobileApp.MobileAppCommand> mobileApp2 = getContext().spawn(MobileApp.create(b2),
+                "mobile_app_2");
 
-        mobileApp.tell(new MobileApp.MakePaymentMessage(account1, account2, 100));
+        final ActorRef<Account.Command> a1 = getContext().spawn(Account.create(), "account_" + 1);
+        final ActorRef<Account.Command> a2 = getContext().spawn(Account.create(), "account_" + 2);
+
+        mobileApp1.tell(new MobileApp.MakePaymentMessage(b1, a1, a2, 100));
+        mobileApp2.tell(new MobileApp.MakePaymentMessage(b2, a2, a1, 50));
 
         return this;
     }

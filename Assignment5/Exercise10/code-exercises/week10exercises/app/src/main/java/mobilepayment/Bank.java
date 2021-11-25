@@ -4,48 +4,40 @@ import akka.actor.typed.ActorRef;
 import akka.actor.typed.Behavior;
 import akka.actor.typed.javadsl.*;
 
-public class Bank extends AbstractBehavior<Bank.BankCommand> {
+public class Bank extends AbstractBehavior<Bank.Command> {
 
-    /* --- Messages ------------------------------------- */
-    public interface BankCommand {
+    interface Command {
     }
 
-    public static final class TransactionMessage implements BankCommand {
-        public final ActorRef<Account.AccountCommand> from;
-        public final ActorRef<Account.AccountCommand> to;
+    public static final class TransactionMessage implements Command {
+        public final ActorRef<Account.Command> from;
+        public final ActorRef<Account.Command> to;
         public final int amount;
 
-        public TransactionMessage(ActorRef<Account.AccountCommand> from, ActorRef<Account.AccountCommand> to,
-                int message) {
+        public TransactionMessage(ActorRef<Account.Command> from, ActorRef<Account.Command> to, int message) {
             this.to = to;
             this.from = from;
             this.amount = message;
         }
     }
 
-    /* --- State ---------------------------------------- */
-
-    /* --- Constructor ---------------------------------- */
-    private Bank(ActorContext<BankCommand> context) {
+    private Bank(ActorContext<Command> context) {
         super(context);
     }
 
-    /* --- Actor initial behavior ----------------------- */
-    public static Behavior<BankCommand> create() {
+    public static Behavior<Command> create() {
         return Behaviors.setup(Bank::new);
     }
 
-    /* --- Message handling ----------------------------- */
     @Override
-    public Receive<BankCommand> createReceive() {
+    public Receive<Command> createReceive() {
         return newReceiveBuilder().onMessage(TransactionMessage.class, this::onTransactionMessage).build();
     }
 
-    /* --- Handlers ------------------------------------- */
-
-    public Behavior<BankCommand> onTransactionMessage(TransactionMessage msg) {
-        getContext().getLog().info("{}: Broadcast of message {} to {} from {}", getContext().getSelf().path().name(),
+    public Behavior<Command> onTransactionMessage(TransactionMessage msg) {
+        getContext().getLog().info("{}: Broadcast of TransactionMessage with amount {} to {} from {}", getContext().getSelf().path().name(),
                 msg.amount, msg.to.path().name(), msg.from.path().name());
+
         msg.from.tell(new Account.DepositMessage(-msg.amount));
         msg.to.tell(new Account.DepositMessage(msg.amount));
         return this;

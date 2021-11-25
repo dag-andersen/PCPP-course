@@ -100,9 +100,9 @@ public class Server extends AbstractBehavior<Server.ServerCommand> {
 		idleWorkers.add(worker);
 
 		getContext().getLog().info(
-				"{}: Worker {} crashed trying to compute {} due to {}\nNew worker {} spawned and added to idleWorkers.",
-				getContext().getSelf().path().name(), crashedChild.path().name(), nonProcessedTask, msg.cause(),
-				worker.path().name());
+			"{}: Worker {} crashed trying to compute {} due to {}\nNew worker {} spawned and added to idleWorkers.",
+			getContext().getSelf().path().name(), crashedChild.path().name(), nonProcessedTask, msg.cause(),
+			worker.path().name());
 
 		return this;
 	}
