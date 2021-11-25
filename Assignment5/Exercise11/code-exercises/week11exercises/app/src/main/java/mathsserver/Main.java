@@ -25,7 +25,5 @@ public class Main {
 		} finally {
 			guardian.terminate();
 		}
-
 	}
-
 }
