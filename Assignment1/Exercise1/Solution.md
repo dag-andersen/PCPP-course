@@ -66,7 +66,7 @@ See code.
 Thread 1 starts and runs the first operation `system.out.print("-");` and proceeds to the `Thread.sleep(50);` operation, and before it reaches the next operation (`System.out.print("|");`), Thread 2 starts and runs the `system.out.print("-");` operation.
 
 ## 3
->  Explain why your solution is correct, andwhy it is not possible for incorrect patterns, such as in the output above, to appear.
+>  Explain why your solution is correct, and why it is not possible for incorrect patterns, such as in the output above, to appear.
 
 The critical section is:
 ```
